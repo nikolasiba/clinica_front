@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MainLayoutPage extends StatelessWidget {
   final Widget child;
 
-  const MainLayoutPage({Key? key, required this.child}) : super(key: key);
+  const MainLayoutPage({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

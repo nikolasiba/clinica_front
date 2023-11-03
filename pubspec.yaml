@@ -13,8 +13,8 @@ dependencies:
   flutter:
     sdk: flutter
     
-  get_it: ^6.1.1
-  provider: ^5.0.0
+  get_it: ^7.6.4
+  provider: ^6.0.5
 
 
  
@@ -25,7 +25,7 @@ dev_dependencies:
     sdk: flutter
 
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -6,11 +6,11 @@ class CustomFlatButton extends StatelessWidget {
   final Function onPressed;
 
   const CustomFlatButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPressed,
     this.color = Colors.pink,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
