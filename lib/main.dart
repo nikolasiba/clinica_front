@@ -1,9 +1,9 @@
+import 'package:clinica/_clinica/router/route_generator.dart';
+import 'package:clinica/_clinica/services/navigation_service.dart';
 import 'package:clinica/locator.dart';
 import 'package:flutter/material.dart';
-import 'package:clinica/router/route_generator.dart';
-import 'package:clinica/ui/layout/main_layout_page.dart';
 
-import 'package:clinica/services/navigation_service.dart';
+import '_clinica/ui/pages/pages.dart';
 
 void main() {
   setupLocator();
@@ -18,13 +18,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Clinica',
-      initialRoute: '/stateful',
+      initialRoute: '/login',
       onGenerateRoute: RouteGenerator.generateRoute,
       navigatorKey: locator<NavigationService>().navigatorKey,
       builder: (_, child) {
-        return MainLayoutPage(
-          child: child ?? Container(),
-        );
+        return const LoginPage();
       },
     );
   }

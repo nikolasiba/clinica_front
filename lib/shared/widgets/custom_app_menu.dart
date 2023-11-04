@@ -1,6 +1,7 @@
+import 'package:clinica/_clinica/services/navigation_service.dart';
 import 'package:clinica/locator.dart';
-import 'package:clinica/services/navigation_service.dart';
-import 'package:clinica/ui/shared/custom_flat_button.dart';
+import 'package:clinica/shared/widgets/custom_flat_button.dart';
+
 import 'package:flutter/material.dart';
 
 class CustomAppMenu extends StatelessWidget {
