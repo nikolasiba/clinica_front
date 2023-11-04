@@ -1,21 +1,22 @@
 import 'package:flutter/cupertino.dart';
+
+import 'package:clinica/ui/views/counter_provider_view.dart';
+import 'package:clinica/ui/views/counter_view.dart';
+import 'package:clinica/ui/views/view_404.dart';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
-import '../ui/pages/pages.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/stateful':
-        return _fadeRoute(const CounterPage(), '/stateful');
+        return _fadeRoute(const CounterView(), '/stateful');
 
       case '/provider':
-        return _fadeRoute(const CounterProviderPage(), '/provider');
-
-      case '/login':
-        return _fadeRoute(const LoginPage(), '/login');
+        return _fadeRoute(const CounterProviderView(), '/provider');
 
       default:
-        return _fadeRoute(const Page404(), '/404');
+        return _fadeRoute(const View404(), '/404');
     }
   }
 

@@ -1,4 +1,4 @@
-import 'package:clinica/shared/widgets/custom_app_menu.dart';
+import 'package:clinica/ui/shared/custom_app_menu.dart';
 import 'package:flutter/material.dart';
 
 class MainLayoutPage extends StatelessWidget {

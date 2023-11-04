@@ -1,4 +1,4 @@
-import 'package:clinica/shared/widgets/custom_flat_button.dart';
+import 'package:clinica/ui/shared/custom_flat_button.dart';
 import 'package:flutter/material.dart';
 
 class Page404 extends StatelessWidget {
