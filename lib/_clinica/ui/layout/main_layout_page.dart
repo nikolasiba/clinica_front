@@ -1,4 +1,3 @@
-import 'package:clinica/shared/widgets/custom_app_menu.dart';
 import 'package:flutter/material.dart';
 
 class MainLayoutPage extends StatelessWidget {
@@ -12,10 +11,7 @@ class MainLayoutPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            const CustomAppMenu(),
-            const Spacer(),
             Expanded(child: child),
-            const Spacer(),
           ],
         ),
       ),

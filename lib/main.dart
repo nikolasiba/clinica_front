@@ -3,7 +3,7 @@ import 'package:clinica/_clinica/services/navigation_service.dart';
 import 'package:clinica/locator.dart';
 import 'package:flutter/material.dart';
 
-import '_clinica/ui/pages/pages.dart';
+import '_clinica/ui/layout/main_layout_page.dart';
 
 void main() {
   setupLocator();
@@ -22,7 +22,9 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: RouteGenerator.generateRoute,
       navigatorKey: locator<NavigationService>().navigatorKey,
       builder: (_, child) {
-        return const LoginPage();
+        return MainLayoutPage(
+          child: child ?? Container(),
+        );
       },
     );
   }

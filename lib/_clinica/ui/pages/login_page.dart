@@ -1,3 +1,5 @@
+import 'package:clinica/_clinica/services/navigation_service.dart';
+import 'package:clinica/locator.dart';
 import 'package:clinica/shared/assets/assets.dart';
 import 'package:clinica/shared/colors/colors.dart';
 import 'package:clinica/shared/widgets/custom_button.dart';
@@ -62,12 +64,41 @@ class LoginPage extends StatelessWidget {
                   height: 20,
                 ),
                 CustomButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    locator<NavigationService>().navigateTo('/stateful');
+                  },
                   text: 'Ingresar',
                   backgroundColor: Colors.white,
                   width: width * 0.2,
                   colorContent: ConstColors.primaryColor,
-                )
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                      onPressed: () {
+                        locator<NavigationService>()
+                            .navigateTo('/recover_password');
+                      },
+                      child: const Text(
+                        '¿Olvidaste tu contraseña?',
+                        style: TextStyle(
+                            color: Colors.white,
+                            decoration: TextDecoration.underline),
+                      )),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                      onPressed: () {
+                        locator<NavigationService>().navigateTo('/register');
+                      },
+                      child: const Text(
+                        '¿Desea registrarse?',
+                        style: TextStyle(
+                            color: Colors.white,
+                            decoration: TextDecoration.underline),
+                      )),
+                ),
               ],
             ),
           ),
