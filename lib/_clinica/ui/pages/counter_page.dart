@@ -1,6 +1,6 @@
-import 'package:clinica/ui/shared/custom_app_menu.dart';
+import 'package:clinica/shared/widgets/custom_app_menu.dart';
+import 'package:clinica/shared/widgets/custom_flat_button.dart';
 import 'package:flutter/material.dart';
-import 'package:clinica/ui/shared/custom_flat_button.dart';
 
 class CounterPage extends StatefulWidget {
   const CounterPage({super.key});

@@ -1,9 +1,9 @@
+import 'package:clinica/_clinica/controllers/counter_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:clinica/providers/counter_provider.dart';
-import 'package:clinica/ui/shared/custom_app_menu.dart';
-import 'package:clinica/ui/shared/custom_flat_button.dart';
+import 'package:clinica/shared/widgets/custom_app_menu.dart';
+import 'package:clinica/shared/widgets/custom_flat_button.dart';
 
 class CounterProviderPage extends StatelessWidget {
   const CounterProviderPage({super.key});
