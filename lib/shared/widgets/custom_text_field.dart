@@ -50,7 +50,8 @@ class CustomTextFieldState extends State<CustomTextField> {
             keyboardType: widget.keyboardType,
             controller: widget.textEditingController,
             onChanged: widget.onChanged,
-            style: const TextStyle(color: Colors.black, fontSize: 18),
+            style: TextStyle(
+                color: widget.textColor ?? Colors.black, fontSize: 18),
             decoration: InputDecoration(
                 prefixIcon: widget.prefixIcon,
                 fillColor: Colors.white,

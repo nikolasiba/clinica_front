@@ -2,6 +2,7 @@ import 'package:clinica/_clinica/services/navigation_service.dart';
 import 'package:clinica/locator.dart';
 import 'package:clinica/shared/assets/assets.dart';
 import 'package:clinica/shared/colors/colors.dart';
+import 'package:clinica/shared/util/responsive.dart';
 import 'package:clinica/shared/widgets/custom_button.dart';
 import 'package:clinica/shared/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -11,26 +12,25 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final responsive = Responsive(context);
     return Scaffold(
         body: Stack(
       children: [
         SizedBox(
-          width: width,
-          height: height,
+          width: responsive.width,
+          height: responsive.height,
           child: Image.asset(
             Res.images.login,
             fit: BoxFit.fill,
           ),
         ),
         Positioned(
-          left: width * .04,
-          top: height * .2,
+          left: responsive.width * .03,
+          top: responsive.height * .2,
           child: Container(
             padding: const EdgeInsets.all(20),
-            height: height * .6,
-            width: width * .3,
+            height: responsive.height * .45,
+            width: responsive.width * .35,
             decoration: BoxDecoration(
               color: ConstColors.primaryColor,
               borderRadius: BorderRadius.circular(10),
@@ -69,7 +69,7 @@ class LoginPage extends StatelessWidget {
                   },
                   text: 'Ingresar',
                   backgroundColor: Colors.white,
-                  width: width * 0.2,
+                  width: responsive.width * 0.2,
                   colorContent: ConstColors.primaryColor,
                 ),
                 Align(
