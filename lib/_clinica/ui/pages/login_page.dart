@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 CustomButton(
                   onPressed: () {
-                    locator<NavigationService>().navigateTo('/stateful');
+                    locator<NavigationService>().navigateTo('/profile');
                   },
                   text: 'Ingresar',
                   backgroundColor: Colors.white,

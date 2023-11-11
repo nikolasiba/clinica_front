@@ -1,6 +1,6 @@
 import 'package:clinica/_clinica/services/navigation_service.dart';
 import 'package:clinica/locator.dart';
-import 'package:clinica/shared/widgets/custom_flat_button.dart';
+import 'package:clinica/shared/colors/colors.dart';
 
 import 'package:flutter/material.dart';
 
@@ -19,29 +19,38 @@ class _TableDesktopMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: ConstColors.primaryColor,
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       width: double.infinity,
       child: Row(
         children: [
-          CustomFlatButton(
-            text: 'Contador Stateful',
-            // onPressed: () => Navigator.pushNamed(context, '/stateful'),
+          TextButton(
             onPressed: () =>
-                locator<NavigationService>().navigateTo('/stateful'),
-            color: Colors.black,
+                locator<NavigationService>().navigateTo('/profile'),
+            child: const Text(
+              'Mi Perfil',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
           ),
           const SizedBox(width: 10),
-          CustomFlatButton(
-            text: 'Contador Provider',
+          TextButton(
             onPressed: () =>
-                locator<NavigationService>().navigateTo('/provider'),
-            color: Colors.black,
+                locator<NavigationService>().navigateTo('/profile'),
+            child: const Text(
+              'Mis citas',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
           ),
           const SizedBox(width: 10),
-          CustomFlatButton(
-            text: 'Otra página',
-            onPressed: () => locator<NavigationService>().navigateTo('/abc123'),
-            color: Colors.black,
+          TextButton(
+            onPressed: () =>
+                locator<NavigationService>().navigateTo('/profile'),
+            child: const Text(
+              'Mis Peticiones',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
           ),
         ],
       ),
@@ -58,25 +67,31 @@ class _MobileMenu extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomFlatButton(
-            text: 'Contador Stateful',
-            // onPressed: () => Navigator.pushNamed(context, '/stateful'),
+          TextButton(
             onPressed: () =>
-                locator<NavigationService>().navigateTo('/stateful'),
-            color: Colors.black,
+                locator<NavigationService>().navigateTo('/profile'),
+            child: const Text(
+              'Mi Perfil',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
           ),
           const SizedBox(width: 10),
-          CustomFlatButton(
-            text: 'Contador Provider',
+          TextButton(
             onPressed: () =>
-                locator<NavigationService>().navigateTo('/provider'),
-            color: Colors.black,
+                locator<NavigationService>().navigateTo('/profile'),
+            child: const Text(
+              'Mis citas',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
           ),
           const SizedBox(width: 10),
-          CustomFlatButton(
-            text: 'Otra página',
-            onPressed: () => locator<NavigationService>().navigateTo('/abc123'),
-            color: Colors.black,
+          TextButton(
+            onPressed: () =>
+                locator<NavigationService>().navigateTo('/profile'),
+            child: const Text(
+              'Mis Peticiones',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
           ),
         ],
       ),

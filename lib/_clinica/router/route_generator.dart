@@ -1,3 +1,5 @@
+import 'package:clinica/_clinica/ui/pages/appoinments_pg.dart';
+import 'package:clinica/_clinica/ui/pages/profile_pg.dart';
 import 'package:clinica/_clinica/ui/pages/register_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -10,14 +12,17 @@ class RouteGenerator {
       case '/login':
         return _fadeRoute(const LoginPage(), '/login');
 
-      case '/stateful':
-        return _fadeRoute(const CounterPage(), '/stateful');
-
-      case '/provider':
-        return _fadeRoute(const CounterProviderPage(), '/provider');
-
       case '/recover_password':
         return _fadeRoute(const RecoverPassworPage(), '/recover_password');
+
+      case '/profile':
+        return _fadeRoute(const ProfilePage(), '/profile');
+
+      case '/appoinments':
+        return _fadeRoute(const AppoinmentPage(), '/appoinments');
+
+      case '/request':
+        return _fadeRoute(const RegisterPage(), '/request');
 
       case '/register':
         return _fadeRoute(const RegisterPage(), '/register');

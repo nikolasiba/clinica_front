@@ -1,15 +1,8 @@
 import 'package:clinica/shared/widgets/custom_app_menu.dart';
 import 'package:flutter/material.dart';
 
-class CounterPage extends StatefulWidget {
-  const CounterPage({super.key});
-
-  @override
-  CounterPageState createState() => CounterPageState();
-}
-
-class CounterPageState extends State<CounterPage> {
-  int counter = 10;
+class AppoinmentPage extends StatelessWidget {
+  const AppoinmentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,22 +18,11 @@ class CounterPageState extends State<CounterPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
-                'Contador: $counter',
+                'Contador:',
                 style:
                     const TextStyle(fontSize: 80, fontWeight: FontWeight.bold),
               ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // CustomFlatButton(
-              //     text: 'Incrementar',
-              //     onPressed: () => setState(() => counter++)),
-              // CustomFlatButton(
-              //     text: 'Decrementar',
-              //     onPressed: () => setState(() => counter--)),
-            ],
           ),
           const Spacer(),
         ],

@@ -1,4 +1,3 @@
-import 'package:clinica/shared/widgets/custom_flat_button.dart';
 import 'package:flutter/material.dart';
 
 class Page404 extends StatelessWidget {
@@ -16,9 +15,9 @@ class Page404 extends StatelessWidget {
             const SizedBox(height: 10),
             const Text('No se encontró la página',
                 style: TextStyle(fontSize: 20)),
-            CustomFlatButton(
-                text: 'Regresar',
-                onPressed: () => Navigator.pushNamed(context, '/stateful')),
+            // CustomFlatButton(
+            //     text: 'Regresar',
+            //     onPressed: () => Navigator.pushNamed(context, '/stateful')),
           ],
         ),
       ),

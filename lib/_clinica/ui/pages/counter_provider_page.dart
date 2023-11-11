@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:clinica/shared/widgets/custom_app_menu.dart';
-import 'package:clinica/shared/widgets/custom_flat_button.dart';
 
 class CounterProviderPage extends StatelessWidget {
   const CounterProviderPage({super.key});
@@ -41,12 +40,12 @@ class _CounterProviderPageBody extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CustomFlatButton(
-                  text: 'Incrementar',
-                  onPressed: () => counterProvider.increment()),
-              CustomFlatButton(
-                  text: 'Decrementar',
-                  onPressed: () => counterProvider.decrement()),
+              // CustomFlatButton(
+              //     text: 'Incrementar',
+              //     onPressed: () => counterProvider.increment()),
+              // CustomFlatButton(
+              //     text: 'Decrementar',
+              //     onPressed: () => counterProvider.decrement()),
             ],
           ),
           const Spacer(),
