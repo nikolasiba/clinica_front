@@ -1,11 +1,15 @@
 import 'package:clinica/_clinica/router/route_generator.dart';
 import 'package:clinica/_clinica/services/navigation_service.dart';
 import 'package:clinica/locator.dart';
+import 'package:clinica/shared/util/preferences.dart';
 import 'package:flutter/material.dart';
 
 import '_clinica/ui/layout/main_layout_page.dart';
 
-void main() {
+void main() async {
+  final prefs = Preferences();
+  //await GetStorage.init();
+  await prefs.initPrefs();
   setupLocator();
   runApp(const MyApp());
 }
