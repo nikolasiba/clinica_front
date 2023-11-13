@@ -1,6 +1,7 @@
 import 'package:clinica/_clinica/patient/appoinment/presentation/view/appoinments_pg.dart';
 import 'package:clinica/_clinica/patient/patient_profile/presentation/view/profile_pg.dart';
 import 'package:clinica/_clinica/login/presentation/view/register_page.dart';
+import 'package:clinica/_clinica/ui/pages/start_day_pg.dart';
 import 'package:clinica/_clinica/patient/petitions/presentation/view/petitiont_pg.dart';
 import 'package:clinica/shared/util/preferences.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,6 +34,9 @@ class RouteGenerator {
 
       case '/register':
         return _fadeRoute(const RegisterPage(), '/register');
+
+      case '/start_day':
+        return _fadeRoute(const StartDayPage(), '/start_day');
 
       default:
         return _fadeRoute(const Page404(), '/404');
