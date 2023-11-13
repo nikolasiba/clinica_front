@@ -28,7 +28,7 @@ class CustomPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: appBarMenu
-              ? const CustomAppMenu()
+              ? CustomAppMenu()
               : IconButton(
                   onPressed: () => Navigator.of(context).pop(),
                   icon: const Icon(Icons.arrow_back)),

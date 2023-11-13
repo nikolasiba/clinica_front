@@ -1,13 +1,20 @@
-import 'package:clinica/_clinica/ui/pages/appoinments_pg.dart';
-import 'package:clinica/_clinica/ui/pages/profile_pg.dart';
-import 'package:clinica/_clinica/ui/pages/register_page.dart';
+import 'package:clinica/_clinica/patient/appoinment/presentation/view/appoinments_pg.dart';
+import 'package:clinica/_clinica/patient/patient_profile/presentation/view/profile_pg.dart';
+import 'package:clinica/_clinica/login/presentation/view/register_page.dart';
 import 'package:clinica/_clinica/ui/pages/start_day_pg.dart';
+import 'package:clinica/_clinica/patient/petitions/presentation/view/petitiont_pg.dart';
+import 'package:clinica/shared/util/preferences.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import '../ui/pages/pages.dart';
-import '../ui/pages/recover_password_pg.dart';
+import '../login/presentation/view/login_page.dart';
+import '../ui/pages/page_404.dart';
+import '../login/presentation/view/recover_password_pg.dart';
+
+final prefs = Preferences();
 
 class RouteGenerator {
+  final prefs = Preferences();
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/login':
@@ -17,13 +24,13 @@ class RouteGenerator {
         return _fadeRoute(const RecoverPassworPage(), '/recover_password');
 
       case '/profile':
-        return _fadeRoute(const ProfilePage(), '/profile');
+        return _fadeRoute(const PatientProfilePage(), '/profile');
 
       case '/appoinments':
-        return _fadeRoute(const AppoinmentPage(), '/appoinments');
+        return _fadeRoute(const PatientAppoinmentPage(), '/appoinments');
 
-      case '/request':
-        return _fadeRoute(const RegisterPage(), '/request');
+      case '/petitions':
+        return _fadeRoute(const PetitionPage(), '/petitions');
 
       case '/register':
         return _fadeRoute(const RegisterPage(), '/register');
