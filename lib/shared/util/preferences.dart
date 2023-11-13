@@ -73,4 +73,12 @@ class Preferences {
   set role(dynamic value) {
     _prefs.setString('role', value);
   }
+
+  get token {
+    return _prefs.getString('token') ?? '';
+  }
+
+  set token(dynamic value) {
+    _prefs.setString('token', value);
+  }
 }

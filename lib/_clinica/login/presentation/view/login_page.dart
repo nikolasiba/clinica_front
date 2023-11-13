@@ -44,77 +44,79 @@ class _LoginBody extends StatelessWidget {
           top: responsive.height * .2,
           child: Container(
             padding: const EdgeInsets.all(20),
-            height: responsive.height * .45,
+            height: responsive.height * .55,
             width: responsive.width * .35,
             decoration: BoxDecoration(
               color: ConstColors.primaryColor,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Iniciar Sesión',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Iniciar Sesión',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomTextField(
-                  hintText: 'Email',
-                  textColor: Colors.white,
-                  textEditingController: TextEditingController(),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomTextField(
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextField(
+                    hintText: 'Email',
                     textColor: Colors.white,
-                    hintText: 'Contraseña',
-                    textEditingController: TextEditingController()),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomButton(
-                  onPressed: () {
-                    controller.login();
-                  },
-                  text: 'Ingresar',
-                  backgroundColor: Colors.white,
-                  width: responsive.width * 0.2,
-                  colorContent: ConstColors.primaryColor,
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                      onPressed: () {
-                        locator<NavigationService>()
-                            .navigateTo('/recover_password');
-                      },
-                      child: const Text(
-                        '¿Olvidaste tu contraseña?',
-                        style: TextStyle(
-                            color: Colors.white,
-                            decoration: TextDecoration.underline),
-                      )),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                      onPressed: () {
-                        locator<NavigationService>().navigateTo('/register');
-                      },
-                      child: const Text(
-                        '¿Desea registrarse?',
-                        style: TextStyle(
-                            color: Colors.white,
-                            decoration: TextDecoration.underline),
-                      )),
-                ),
-              ],
+                    textEditingController: TextEditingController(),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextField(
+                      textColor: Colors.white,
+                      hintText: 'Contraseña',
+                      textEditingController: TextEditingController()),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomButton(
+                    onPressed: () async {
+                      await controller.login();
+                    },
+                    text: 'Ingresar',
+                    backgroundColor: Colors.white,
+                    width: responsive.width * 0.2,
+                    colorContent: ConstColors.primaryColor,
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                        onPressed: () {
+                          locator<NavigationService>()
+                              .navigateTo('/recover_password');
+                        },
+                        child: const Text(
+                          '¿Olvidaste tu contraseña?',
+                          style: TextStyle(
+                              color: Colors.white,
+                              decoration: TextDecoration.underline),
+                        )),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                        onPressed: () {
+                          locator<NavigationService>().navigateTo('/register');
+                        },
+                        child: const Text(
+                          '¿Desea registrarse?',
+                          style: TextStyle(
+                              color: Colors.white,
+                              decoration: TextDecoration.underline),
+                        )),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -5,6 +5,7 @@ import 'package:clinica/_clinica/login/repository/login_repository.dart';
 import 'package:clinica/_clinica/services/navigation_service.dart';
 import 'package:clinica/locator.dart';
 import 'package:clinica/shared/util/preferences.dart';
+import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 
 class LoginController extends ChangeNotifier {
@@ -15,13 +16,14 @@ class LoginController extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void login() async {
-    bool response = await _loginService.login();
+  Future<void> login() async {
+    Either response = await _loginService.login(
+        email: emailController.text, password: passwordController.text);
 
-    prefs.role = 'paciente';
-    log(prefs.role);
-
-    if (response && prefs.role == 'paciente') {
+    if (response.isRight) {
+      log(response.right.toString());
+      prefs.role = 'paciente';
+      log(prefs.role);
       locator<NavigationService>().navigateTo('/profile');
     }
   }
