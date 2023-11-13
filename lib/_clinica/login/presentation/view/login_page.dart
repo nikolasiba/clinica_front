@@ -1,3 +1,4 @@
+import 'package:clinica/_clinica/login/presentation/controller/login_ctr.dart';
 import 'package:clinica/_clinica/services/navigation_service.dart';
 import 'package:clinica/locator.dart';
 import 'package:clinica/shared/assets/assets.dart';
@@ -6,13 +7,27 @@ import 'package:clinica/shared/util/responsive.dart';
 import 'package:clinica/shared/widgets/custom_button.dart';
 import 'package:clinica/shared/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+        create: (_) => LoginController(), child: const _LoginBody());
+  }
+}
+
+class _LoginBody extends StatelessWidget {
+  const _LoginBody();
+
+  @override
+  Widget build(BuildContext context) {
     final responsive = Responsive(context);
+
+    final controller = Provider.of<LoginController>(context);
+
     return Scaffold(
         body: Stack(
       children: [
@@ -65,7 +80,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 CustomButton(
                   onPressed: () {
-                    locator<NavigationService>().navigateTo('/profile');
+                    controller.login();
                   },
                   text: 'Ingresar',
                   backgroundColor: Colors.white,

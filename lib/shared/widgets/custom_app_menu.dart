@@ -1,21 +1,24 @@
 import 'package:clinica/_clinica/services/navigation_service.dart';
 import 'package:clinica/locator.dart';
 import 'package:clinica/shared/colors/colors.dart';
+import 'package:clinica/shared/util/preferences.dart';
 
 import 'package:flutter/material.dart';
 
 class CustomAppMenu extends StatelessWidget {
-  const CustomAppMenu({super.key});
+  CustomAppMenu({super.key});
+
+  final _prefs = Preferences();
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (_, constraints) =>
-            (constraints.maxWidth > 520) ? _TableDesktopMenu() : _MobileMenu());
+            _prefs.role == 'paciente' ? _PatientpMenu() : _DoctrMenu());
   }
 }
 
-class _TableDesktopMenu extends StatelessWidget {
+class _PatientpMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +40,7 @@ class _TableDesktopMenu extends StatelessWidget {
           const SizedBox(width: 10),
           TextButton(
             onPressed: () =>
-                locator<NavigationService>().navigateTo('/profile'),
+                locator<NavigationService>().navigateTo('/appoinments'),
             child: const Text(
               'Mis citas',
               style: TextStyle(color: Colors.white, fontSize: 18),
@@ -46,7 +49,7 @@ class _TableDesktopMenu extends StatelessWidget {
           const SizedBox(width: 10),
           TextButton(
             onPressed: () =>
-                locator<NavigationService>().navigateTo('/profile'),
+                locator<NavigationService>().navigateTo('/petitions'),
             child: const Text(
               'Mis Peticiones',
               style: TextStyle(color: Colors.white, fontSize: 18),
@@ -58,14 +61,16 @@ class _TableDesktopMenu extends StatelessWidget {
   }
 }
 
-class _MobileMenu extends StatelessWidget {
+class _DoctrMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: ConstColors.primaryColor,
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
           TextButton(
             onPressed: () =>

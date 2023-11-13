@@ -71,6 +71,6 @@ class Preferences {
   }
 
   set role(dynamic value) {
-    _prefs.setString('rol', value);
+    _prefs.setString('role', value);
   }
 }
