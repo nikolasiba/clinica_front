@@ -52,6 +52,15 @@ class _TableDesktopMenu extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),
+          const SizedBox(width: 10),
+          TextButton(
+            onPressed: () =>
+                locator<NavigationService>().navigateTo('/start_day'),
+            child: const Text(
+              'Iniciar Jornada',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+          ),
         ],
       ),
     );
@@ -90,6 +99,15 @@ class _MobileMenu extends StatelessWidget {
                 locator<NavigationService>().navigateTo('/profile'),
             child: const Text(
               'Mis Peticiones',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+          ),
+          const SizedBox(width: 10),
+          TextButton(
+            onPressed: () =>
+                locator<NavigationService>().navigateTo('/start_day'),
+            child: const Text(
+              'Iniciar Jornada',
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),
