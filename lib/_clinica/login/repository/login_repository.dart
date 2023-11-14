@@ -10,11 +10,14 @@ class LoginRepository implements ILogin {
       {required String email, required String password}) async {
     var apiService = NetworkApiService();
 
+    var headers = {"Content-Type": "application/json"};
+
     Object body = {"email": email, "password": password};
 
     String url = Apis.login;
 
-    dynamic response = await apiService.postResponse(url, body);
+    dynamic response =
+        await apiService.postResponse(url, body, headers: headers);
     return response;
   }
 }

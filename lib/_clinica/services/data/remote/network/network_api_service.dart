@@ -34,7 +34,7 @@ class NetworkApiService extends BaseApiService {
       String url, Object jsonBody,
       {Map<String, String> headers = const {}}) async {
     var response = await http
-        .post(Uri.parse(url), body: jsonBody, headers: headers)
+        .post(Uri.parse(url), body: jsonEncode(jsonBody), headers: headers)
         .timeout(const Duration(seconds: timeOutseconds));
 
     return (returnResponse(response, true));
@@ -157,7 +157,7 @@ Either<NetworkException, dynamic> returnResponse(
       return Left(BadRequestException(responseJson['message']));
     case 500:
       dynamic responseJson = jsonDecode(response.body);
-      log(responseJson);
+      log(responseJson.toString());
       return Left(BadRequestException(responseJson['message']));
     case 502:
       dynamic responseJson = jsonDecode(response.body);
