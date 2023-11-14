@@ -1,7 +1,7 @@
 class Apis {
   //
   //
-  static String localHost = 'http://localhost:8080';
+  static String localHost = 'https://back-clinic.onrender.com';
 
   static final login = '$localHost/api/auth/login';
 
