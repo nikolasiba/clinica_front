@@ -5,13 +5,11 @@ import 'package:clinica/shared/widgets/custom_button.dart';
 import 'package:clinica/shared/widgets/custom_page.dart';
 import 'package:clinica/shared/widgets/custom_table.dart';
 import 'package:clinica/shared/widgets/separator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ManageAgendaPage extends StatelessWidget {
-  ManageAgendaPage({super.key});
-  ManageAgendaController? startDayController;
+  const ManageAgendaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +21,8 @@ class ManageAgendaPage extends StatelessWidget {
 class _ManageAgendaBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<ManageAgendaController>(context);
+
     return CustomPage(
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -82,7 +82,9 @@ class _ManageAgendaBody extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: CustomButton(
-              onPressed: () {},
+              onPressed: () {
+                controller.printA();
+              },
               text: 'Actualizar',
               width: Responsive.of(context).width * .5,
               backgroundColor: ConstColors.primaryColor,

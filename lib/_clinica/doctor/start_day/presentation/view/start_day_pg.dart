@@ -15,25 +15,25 @@ class StartDayPage extends StatelessWidget {
 }
 
 class _StartDayBody extends StatelessWidget {
-  const _StartDayBody({super.key});
+  const _StartDayBody();
 
   @override
   Widget build(BuildContext context) {
-    return CustomPage(
+    return const CustomPage(
       body: CustomDialog(
         //Advertencia
         title: Text('No se que titulo ponerle a este dialogo',
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.grey,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             )),
         content: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: EdgeInsets.all(10),
           child: Center(
               child: Text(
             'aa',
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.grey,
               fontSize: 15,
             ),

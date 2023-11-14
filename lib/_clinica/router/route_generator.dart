@@ -37,7 +37,7 @@ class RouteGenerator {
         return _fadeRoute(const RegisterPage(), '/register');
 
       case '/manage_agenda':
-        return _fadeRoute(ManageAgendaPage(), '/manage_agenda');
+        return _fadeRoute(const ManageAgendaPage(), '/manage_agenda');
 
       case '/start_day':
         return _fadeRoute(const StartDayPage(), '/start_day');
