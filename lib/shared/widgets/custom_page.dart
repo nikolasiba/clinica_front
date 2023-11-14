@@ -3,6 +3,7 @@ import 'package:clinica/locator.dart';
 import 'package:clinica/shared/colors/colors.dart';
 import 'package:clinica/shared/util/responsive.dart';
 import 'package:clinica/shared/widgets/custom_app_menu.dart';
+import 'package:clinica/shared/widgets/separator.dart';
 import 'package:flutter/material.dart';
 
 class CustomPage extends StatelessWidget {
@@ -53,15 +54,27 @@ class CustomPage extends StatelessWidget {
                         ],
                       )
                     : Center(
-                        child: Container(
-                            height: Responsive.of(context).height,
-                            width: Responsive.of(context).width * .85,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20))),
-                            padding: const EdgeInsets.all(40),
-                            child: body)))));
+                        child: RawScrollbar(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              const Separator(size: 2),
+                              Container(
+                                  height: Responsive.of(context).height * 0.9,
+                                  width: Responsive.of(context).width * .85,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  padding: const EdgeInsets.all(40),
+                                  child: body),
+                              const Separator(size: 2),
+                              Container(
+                                  color: ConstColors.primaryColor,
+                                  width: Responsive.of(context).width,
+                                  height: Responsive.of(context).height * .07)
+                            ],
+                          ),
+                        ),
+                      )))));
   }
 }
