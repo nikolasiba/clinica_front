@@ -55,7 +55,7 @@ class _LoginBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    'Iniciar Sesión',
+                    'Log in',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,
@@ -67,23 +67,23 @@ class _LoginBody extends StatelessWidget {
                   CustomTextField(
                     hintText: 'Email',
                     textColor: Colors.white,
-                    textEditingController: TextEditingController(),
+                    textEditingController: controller.emailController,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   CustomTextField(
                       textColor: Colors.white,
-                      hintText: 'Contraseña',
-                      textEditingController: TextEditingController()),
+                      hintText: 'Password',
+                      textEditingController: controller.passwordController),
                   const SizedBox(
                     height: 20,
                   ),
                   CustomButton(
                     onPressed: () async {
-                      await controller.login();
+                      await controller.login(context);
                     },
-                    text: 'Ingresar',
+                    text: 'Log in',
                     backgroundColor: Colors.white,
                     width: responsive.width * 0.2,
                     colorContent: ConstColors.primaryColor,
@@ -96,7 +96,7 @@ class _LoginBody extends StatelessWidget {
                               .navigateTo('/recover_password');
                         },
                         child: const Text(
-                          '¿Olvidaste tu contraseña?',
+                          'forget password ?',
                           style: TextStyle(
                               color: Colors.white,
                               decoration: TextDecoration.underline),
@@ -109,7 +109,7 @@ class _LoginBody extends StatelessWidget {
                           locator<NavigationService>().navigateTo('/register');
                         },
                         child: const Text(
-                          '¿Desea registrarse?',
+                          'Sing in   ',
                           style: TextStyle(
                               color: Colors.white,
                               decoration: TextDecoration.underline),

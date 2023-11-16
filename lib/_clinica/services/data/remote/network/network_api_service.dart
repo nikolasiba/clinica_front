@@ -136,10 +136,10 @@ Either<NetworkException, dynamic> returnResponse(
     case 400:
       dynamic responseJson = jsonDecode(response.body);
       if (isJson) {
-        return Left(BadRequestException(responseJson['message']));
+        return Left(BadRequestException(responseJson['response']));
       } else {
         var error =
-            'Error occured while communication with server with status code : ${response.statusCode}, message: ${response.body}';
+            'Error occured while communication with server with status code : ${response.statusCode}, response: ${response.body}';
 
         return Left(BadRequestException(error));
       }
@@ -149,16 +149,16 @@ Either<NetworkException, dynamic> returnResponse(
       dynamic responseJson = jsonDecode(response.body);
       log(responseJson);
 
-      return Left(BadRequestException(responseJson['message']));
+      return Left(BadRequestException(responseJson['response']));
     case 404:
       dynamic responseJson = jsonDecode(response.body);
       log(responseJson.toString());
 
-      return Left(BadRequestException(responseJson['message']));
+      return Left(BadRequestException(responseJson['response']));
     case 500:
       dynamic responseJson = jsonDecode(response.body);
       log(responseJson.toString());
-      return Left(BadRequestException(responseJson['message']));
+      return Left(BadRequestException(responseJson['response']));
     case 502:
       dynamic responseJson = jsonDecode(response.body);
       log(responseJson);
@@ -167,6 +167,6 @@ Either<NetworkException, dynamic> returnResponse(
     default:
       return Left(FetchDataException(
           'Error occured while communication with server'
-          ' with status code : ${response.statusCode}, message: ${response.body}'));
+          ' with status code : ${response.statusCode}, response: ${response.body}'));
   }
 }

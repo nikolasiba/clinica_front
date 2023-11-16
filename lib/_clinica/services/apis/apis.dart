@@ -1,9 +1,13 @@
 class Apis {
   //
   //
-  static String localHost = 'https://back-clinic.onrender.com';
+
+  static int option = 0;
+
+  static String publish = 'https://back-clinic.onrender.com';
+  static String localHost = option == 0 ? 'http://localhost:8080' : publish;
 
   static final login = '$localHost/api/auth/login';
 
-  static const register = 'http://localhost:8080/api/auth/login';
+  static final register = '$localHost/api/auth/sing-in';
 }

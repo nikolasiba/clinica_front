@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../widgets/widgets.dart';
 
@@ -22,7 +23,6 @@ class _Device {
       String? leftButtonText,
       String? rightButtonText}) {
     showDialog(
-      
       context: context,
       builder: (BuildContext alertContext) => CustomDialog(
         hasRightButton: hasRightButton,
@@ -35,7 +35,7 @@ class _Device {
         title: Text(
             title ??
                 (isWarning
-                    ? 'Advertencia'
+                    ? 'Warning'
                     : 'No se que titulo ponerle a este dialogo'),
             style: const TextStyle(
               color: Colors.grey,
@@ -61,4 +61,10 @@ class _Device {
 
 class _Data {
   _Data._();
+
+  String consecutive() {
+    var now = DateTime.now();
+    String formatter = DateFormat('yyyyMMddHHmmss').format(now);
+    return formatter;
+  }
 }

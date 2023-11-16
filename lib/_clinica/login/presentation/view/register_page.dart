@@ -1,17 +1,30 @@
+import 'package:clinica/_clinica/login/presentation/controller/login_ctr.dart';
 import 'package:clinica/shared/assets/assets.dart';
 import 'package:clinica/shared/colors/colors.dart';
 import 'package:clinica/shared/util/responsive.dart';
-import 'package:clinica/shared/util/utils.dart';
 import 'package:clinica/shared/widgets/custom_button.dart';
 import 'package:clinica/shared/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+        create: (_) => LoginController(), child: const _BodyRegister());
+  }
+}
+
+class _BodyRegister extends StatelessWidget {
+  const _BodyRegister();
+
+  @override
+  Widget build(BuildContext context) {
+    final loginController = Provider.of<LoginController>(context);
     final responsive = Responsive(context);
+
     return Scaffold(
         body: Stack(
       children: [
@@ -55,25 +68,29 @@ class RegisterPage extends StatelessWidget {
                               CustomTextField(
                                 labelText: 'Nombre',
                                 textColor: Colors.white,
-                                textEditingController: TextEditingController(),
+                                textEditingController:
+                                    loginController.nameController,
                               ),
                               const SizedBox(height: 20),
                               CustomTextField(
                                 labelText: 'Cedula',
                                 textColor: Colors.white,
-                                textEditingController: TextEditingController(),
+                                textEditingController:
+                                    loginController.idController,
                               ),
                               const SizedBox(height: 20),
                               CustomTextField(
                                 labelText: 'telefono',
                                 textColor: Colors.white,
-                                textEditingController: TextEditingController(),
+                                textEditingController:
+                                    loginController.phoneController,
                               ),
                               const SizedBox(height: 20),
                               CustomTextField(
                                 labelText: 'ciudad',
                                 textColor: Colors.white,
-                                textEditingController: TextEditingController(),
+                                textEditingController:
+                                    loginController.cityController,
                               ),
                               const SizedBox(height: 20),
                             ],
@@ -86,7 +103,12 @@ class RegisterPage extends StatelessWidget {
                               CustomTextField(
                                 labelText: 'Fecha de nacimiento',
                                 textColor: Colors.white,
-                                textEditingController: TextEditingController(),
+                                textEditingController:
+                                    loginController.birthdayController,
+                                onTap: () {
+                                  _showDatePicker(context,
+                                      loginController.birthdayController);
+                                },
                               ),
                               const SizedBox(height: 20),
                               CustomTextField(
@@ -94,19 +116,22 @@ class RegisterPage extends StatelessWidget {
                                 height: responsive.height * 0.08,
                                 labelText: 'Alergias',
                                 textColor: Colors.white,
-                                textEditingController: TextEditingController(),
+                                textEditingController:
+                                    loginController.allergiesController,
                               ),
                               const SizedBox(height: 20),
                               CustomTextField(
                                 labelText: 'EPS',
                                 textColor: Colors.white,
-                                textEditingController: TextEditingController(),
+                                textEditingController:
+                                    loginController.epsController,
                               ),
                               const SizedBox(height: 20),
                               CustomTextField(
                                 labelText: 'Tipo de sangre',
                                 textColor: Colors.white,
-                                textEditingController: TextEditingController(),
+                                textEditingController:
+                                    loginController.bloodTypeController,
                               ),
                               const SizedBox(height: 20),
                             ],
@@ -138,13 +163,15 @@ class RegisterPage extends StatelessWidget {
                             CustomTextField(
                               labelText: 'Email',
                               textColor: Colors.white,
-                              textEditingController: TextEditingController(),
+                              textEditingController:
+                                  loginController.emailRegisterController,
                             ),
                             const SizedBox(height: 20),
                             CustomTextField(
                               labelText: 'Contrasena',
                               textColor: Colors.white,
-                              textEditingController: TextEditingController(),
+                              textEditingController:
+                                  loginController.passwordRegisterController,
                             ),
                             const SizedBox(height: 20),
                           ],
@@ -154,9 +181,7 @@ class RegisterPage extends StatelessWidget {
                     const SizedBox(height: 20),
                     CustomButton(
                       onPressed: () {
-                        Utils.device.showDialogCustom(
-                            context: context, message: 'hola', title: 'hola');
-                        //locator<NavigationService>().navigateTo('/login');
+                        loginController.singIn(context);
                       },
                       text: 'Registrarse',
                       backgroundColor: Colors.white,
@@ -171,5 +196,19 @@ class RegisterPage extends StatelessWidget {
         ),
       ],
     ));
+  }
+
+  void _showDatePicker(BuildContext context, TextEditingController controller) {
+    // Muestra el cuadro de diálogo del calendario
+
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now().subtract(const Duration(days: 365 * 100)),
+      lastDate: DateTime(2023, 12, 31),
+    ).then((date) {
+      // Actualiza la fecha seleccionada
+      controller.text = date.toString().substring(0, 10);
+    });
   }
 }
