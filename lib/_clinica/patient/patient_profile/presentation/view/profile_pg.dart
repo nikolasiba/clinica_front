@@ -15,7 +15,24 @@ class PatientProfilePage extends StatelessWidget {
   }
 }
 
-class _ProfileBody extends StatelessWidget {
+class _ProfileBody extends StatefulWidget {
+  @override
+  State<_ProfileBody> createState() => _ProfileBodyState();
+}
+
+class _ProfileBodyState extends State<_ProfileBody> {
+  bool _isInitialized = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isInitialized) {
+      final characterViewModel = Provider.of<PatientProfileController>(context);
+      characterViewModel.getPatientProfile();
+      _isInitialized = true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,9 +74,9 @@ class _ProfileBody extends StatelessWidget {
                               ),
                             )),
                         const Separator(size: 4),
-                        _personalData(),
+                        _personalData(context),
                         const Separator(size: 14),
-                        _contacData(),
+                        _contacData(context),
                         const Spacer(),
                         Align(
                           alignment: Alignment.bottomCenter,
@@ -88,7 +105,9 @@ class _ProfileBody extends StatelessWidget {
   }
 }
 
-Widget _contacData() {
+Widget _contacData(context) {
+  final controller = Provider.of<PatientProfileController>(context);
+
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -102,30 +121,30 @@ Widget _contacData() {
         ),
       ),
       RichText(
-          text: const TextSpan(text: 'Teléfono: ', children: [
+          text: TextSpan(text: 'Teléfono: ', children: [
         TextSpan(
-          text: '1231231231',
-          style: TextStyle(
+          text: controller.patientModel.phone ?? 'No registrado',
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.normal,
           ),
         )
       ])),
       RichText(
-          text: const TextSpan(text: 'Dirección: ', children: [
+          text: TextSpan(text: 'Ciudad: ', children: [
         TextSpan(
-          text: 'Calle 12 # 12-12',
-          style: TextStyle(
+          text: controller.patientModel.city ?? 'No registrado',
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.normal,
           ),
         )
       ])),
       RichText(
-          text: const TextSpan(text: 'Email: ', children: [
+          text: TextSpan(text: 'Email: ', children: [
         TextSpan(
-          text: 'nikolasiba23@gmail.com',
-          style: TextStyle(
+          text: controller.patientModel.email ?? 'No registrado',
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.normal,
           ),
@@ -135,64 +154,66 @@ Widget _contacData() {
   );
 }
 
-Widget _personalData() {
+Widget _personalData(context) {
+  final controller = Provider.of<PatientProfileController>(context);
   const double space = 2;
 
-  return const Row(
+  return Row(
     children: [
-      Spacer(),
+      const Spacer(),
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Text('Nombre: '),
-              Text('Nicolas Ibañez '),
+              const Text('Nombre: '),
+              Text(controller.patientModel.name ?? 'No registrado'),
             ],
           ),
-          Separator(size: space),
+          const Separator(size: space),
           Row(
             children: [
-              Text('Cedula: '),
-              Text('Nicolas Ibañez '),
+              const Text('Cedula: '),
+              Text(
+                  '${controller.patientModel.identification ?? 'No registrado'} '),
             ],
           ),
-          Separator(size: space),
+          const Separator(size: space),
           Row(
             children: [
-              Text('Fecha de nacimiento: '),
-              Text('Nicolas Ibañez '),
+              const Text('Fecha de nacimiento: '),
+              Text(controller.patientModel.birthday ?? 'No registrado'),
             ],
           ),
         ],
       ),
-      Separator(size: 5, vertical: false),
+      const Separator(size: 5, vertical: false),
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Text('Alergias: '),
-              Text('Nicolas Ibañez '),
+              const Text('Alergias: '),
+              Text(controller.patientModel.allergies ?? 'No registrado'),
             ],
           ),
-          Separator(size: space),
+          const Separator(size: space),
           Row(
             children: [
-              Text('Eps: '),
-              Text('Nicolas Ibañez '),
+              const Text('Eps: '),
+              Text(controller.patientModel.eps ?? 'No registrado'),
             ],
           ),
-          Separator(size: space),
+          const Separator(size: space),
           Row(
             children: [
-              Text('Tipo de sangre: '),
-              Text('Nicolas Ibañez '),
+              const Text('Tipo de sangre: '),
+              Text(controller.patientModel.bloodType ?? 'No registrado'),
             ],
           ),
         ],
       ),
-      Spacer()
+      const Spacer()
     ],
   );
 }

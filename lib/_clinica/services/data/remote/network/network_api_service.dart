@@ -24,8 +24,9 @@ class NetworkApiService extends BaseApiService {
   }
 
   @override
-  Future<Either<NetworkException, dynamic>> getResponse(String url) async {
-    final response = await http.get(Uri.parse(url));
+  Future<Either<NetworkException, dynamic>> getResponse(String url,
+      {Map<String, String> headers = const {}}) async {
+    final response = await http.get(Uri.parse(url), headers: headers);
     return returnResponse(response, true);
   }
 

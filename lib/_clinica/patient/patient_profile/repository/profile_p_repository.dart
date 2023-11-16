@@ -1,14 +1,31 @@
 import 'package:clinica/_clinica/patient/patient_profile/domain/interface/i_patient_pr.dart';
+import 'package:clinica/_clinica/services/apis/apis.dart';
+import 'package:clinica/_clinica/services/data/remote/error/network_error.dart';
+import 'package:clinica/_clinica/services/data/remote/network/network_api_service.dart';
+import 'package:clinica/shared/util/preferences.dart';
+import 'package:either_dart/either.dart';
 
-class ProfilePRepository implements IPatientProfile {
+class ProfileRepository implements IPatientProfile {
+  final prefs = Preferences();
   @override
   Future<void> deletePatientProfile() {
     throw UnimplementedError();
   }
 
   @override
-  Future<void> getPatientProfile() {
-    throw UnimplementedError();
+  Future<Either<NetworkException, dynamic>> getPatientProfile(
+      {required String code}) async {
+    var apiService = NetworkApiService();
+
+    var headers = {
+      "Authorization": "Bearer ${prefs.token}",
+    };
+
+    String url = Apis.patientProfile + code;
+
+    dynamic response = await apiService.getResponse(url, headers: headers);
+
+    return response;
   }
 
   @override

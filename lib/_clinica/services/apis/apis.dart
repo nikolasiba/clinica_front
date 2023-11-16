@@ -10,4 +10,6 @@ class Apis {
   static final login = '$localHost/api/auth/login';
 
   static final register = '$localHost/api/auth/sing-in';
+
+  static final patientProfile = '$localHost/api/patient/get-patient-by-code/';
 }
