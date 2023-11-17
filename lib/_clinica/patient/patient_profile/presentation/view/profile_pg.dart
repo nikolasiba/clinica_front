@@ -27,8 +27,8 @@ class _ProfileBodyState extends State<_ProfileBody> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (!_isInitialized) {
-      final characterViewModel = Provider.of<PatientProfileController>(context);
-      characterViewModel.getPatientProfile();
+      final profileViewModel = Provider.of<PatientProfileController>(context);
+      profileViewModel.getPatientProfile();
       _isInitialized = true;
     }
   }
