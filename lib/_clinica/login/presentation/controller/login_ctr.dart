@@ -18,6 +18,8 @@ class LoginController extends ChangeNotifier {
   //login
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController repeatPasswordController = TextEditingController();
+
   //register
   TextEditingController nameController = TextEditingController();
   TextEditingController idController = TextEditingController();
@@ -40,11 +42,25 @@ class LoginController extends ChangeNotifier {
       prefs.token = response.right['response']['token'];
       Map token = JwtDecoder.decode(prefs.token);
       prefs.role = token['rol'];
+      String route = '';
+      if (prefs.role == 'Patient') {
+        route = '/profile';
+      } else if (prefs.role == 'Doctor') {
+        route = '/doctor';
+      }
 
-      locator<NavigationService>().navigateTo('/profile');
-    } else {
-      Utils.device
-          .showDialogCustom(context: context, message: response.left.message);
+      if (route.isNotEmpty) {
+        locator<NavigationService>().navigateTo(route);
+      } else {
+        Utils.device.showDialogCustom(
+            context: context,
+            message: 'yo are not a patient or doctor',
+            title: 'Error',
+            onRightPressed: () {
+              clearFields();
+              Navigator.pop(context);
+            });
+      }
     }
   }
 
@@ -92,5 +108,31 @@ class LoginController extends ChangeNotifier {
     bloodTypeController.text = '';
     emailRegisterController.text = '';
     passwordRegisterController.text = '';
+  }
+
+  Future<void> changePasword(BuildContext context) async {
+    Either response = await _loginService.changePassword(
+        email: emailController.text,
+        password: passwordController.text,
+        newPassword: repeatPasswordController.text);
+
+    if (response.isRight) {
+      Future.delayed(
+          const Duration(milliseconds: 300),
+          () => Utils.device.showDialogCustom(
+              context: context,
+              message: 'Password changed',
+              title: 'Succes',
+              onRightPressed: () {
+                clearFields();
+                Navigator.pop(context);
+                Navigator.pop(context);
+              }));
+    } else {
+      Future.delayed(
+          const Duration(milliseconds: 300),
+          () => Utils.device.showDialogCustom(
+              context: context, message: response.left.message));
+    }
   }
 }

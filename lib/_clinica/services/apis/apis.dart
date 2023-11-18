@@ -8,7 +8,7 @@ class Apis {
   static String localHost = option == 0 ? 'http://localhost:8080' : publish;
 
   static final login = '$localHost/api/auth/login';
-
+  static final changePassword = '$localHost/api/auth/step2-change-pwd';
   static final register = '$localHost/api/auth/sing-in';
 
   static final patientProfile = '$localHost/api/patient/get-patient-by-code/';

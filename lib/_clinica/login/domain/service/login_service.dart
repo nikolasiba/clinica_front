@@ -17,4 +17,12 @@ class LoginService {
       {required RegisterModel registerModel}) async {
     return await iLogin.singIn(registerModel: registerModel);
   }
+
+  Future<Either<NetworkException, dynamic>> changePassword(
+      {required String email,
+      required String password,
+      required String newPassword}) async {
+    return await iLogin.changePassword(
+        email: email, password: password, newPassword: newPassword);
+  }
 }

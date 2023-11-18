@@ -17,7 +17,7 @@ class NetworkApiService extends BaseApiService {
       String url, Object jsonBody,
       {Map<String, String> headers = const {}}) async {
     var response = await http
-        .put(Uri.parse(url), body: jsonBody, headers: headers)
+        .put(Uri.parse(url), body: jsonEncode(jsonBody), headers: headers)
         .timeout(const Duration(seconds: timeOutseconds));
 
     return (returnResponse(response, true));

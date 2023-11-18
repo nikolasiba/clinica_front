@@ -11,4 +11,10 @@ abstract class ILogin {
   Future<Either<NetworkException, dynamic>> singIn({
     required RegisterModel registerModel,
   });
+
+  Future<Either<NetworkException, dynamic>> changePassword({
+    required String email,
+    required String password,
+    required String newPassword,
+  });
 }
