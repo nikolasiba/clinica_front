@@ -5,7 +5,6 @@ import 'package:clinica/shared/widgets/custom_button.dart';
 import 'package:clinica/shared/widgets/custom_page.dart';
 import 'package:clinica/shared/widgets/custom_table.dart';
 import 'package:clinica/shared/widgets/separator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

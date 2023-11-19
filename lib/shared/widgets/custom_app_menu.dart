@@ -73,6 +73,15 @@ class _PatientpMenu extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),
+          const SizedBox(width: 10),
+          TextButton(
+            onPressed: () =>
+                locator<NavigationService>().navigateTo('/appointment_detail'),
+            child: const Text(
+              'Detalle cita',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+          ),
         ],
       ),
     );
@@ -131,6 +140,15 @@ class _DoctrMenu extends StatelessWidget {
                 locator<NavigationService>().navigateTo('/start_day'),
             child: const Text(
               'Iniciar Jornada',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+          ),
+          const SizedBox(width: 10),
+          TextButton(
+            onPressed: () =>
+                locator<NavigationService>().navigateTo('/appointment_detail'),
+            child: const Text(
+              'Detalle Cita',
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),

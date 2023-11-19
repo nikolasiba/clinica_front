@@ -1,5 +1,3 @@
-import 'package:clinica/_clinica/services/navigation_service.dart';
-import 'package:clinica/locator.dart';
 import 'package:clinica/shared/colors/colors.dart';
 import 'package:clinica/shared/util/responsive.dart';
 import 'package:clinica/shared/widgets/custom_app_menu.dart';

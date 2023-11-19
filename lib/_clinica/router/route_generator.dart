@@ -1,3 +1,4 @@
+import 'package:clinica/_clinica/doctor/appointment_detail/presentation/view/appointment_detail_pg.dart';
 import 'package:clinica/_clinica/doctor/start_day/presentation/view/start_day_pg.dart';
 import 'package:clinica/_clinica/patient/appoinment/presentation/view/appoinments_pg.dart';
 import 'package:clinica/_clinica/patient/patient_profile/presentation/view/profile_pg.dart';
@@ -41,6 +42,9 @@ class RouteGenerator {
 
       case '/start_day':
         return _fadeRoute(const StartDayPage(), '/start_day');
+
+      case '/appointment_detail':
+        return _fadeRoute(const AppointmentDetailPage(), '/appointment_detail');
 
       default:
         return _fadeRoute(const Page404(), '/404');
