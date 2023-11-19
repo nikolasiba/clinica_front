@@ -1,5 +1,8 @@
+import 'package:clinica/_clinica/login/domain/model/user_model.dart';
+import 'package:clinica/shared/util/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../widgets/widgets.dart';
 
@@ -66,5 +69,11 @@ class _Data {
     var now = DateTime.now();
     String formatter = DateFormat('yyyyMMddHHmmss').format(now);
     return formatter;
+  }
+
+  UserModel getUser() {
+    final prefs = Preferences();
+    Map map = JwtDecoder.decode(prefs.token);
+    return UserModel.fromJson(map);
   }
 }

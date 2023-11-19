@@ -9,19 +9,14 @@ import 'package:clinica/shared/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (_) => LoginController(), child: const _LoginBody());
-  }
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginBody extends StatelessWidget {
-  const _LoginBody();
-
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive(context);

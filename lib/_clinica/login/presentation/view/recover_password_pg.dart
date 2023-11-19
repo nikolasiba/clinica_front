@@ -9,19 +9,14 @@ import 'package:clinica/shared/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class RecoverPassworPage extends StatelessWidget {
+class RecoverPassworPage extends StatefulWidget {
   const RecoverPassworPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (_) => LoginController(), child: const _RecoverBody());
-  }
+  State<RecoverPassworPage> createState() => _RecoverPassworPageState();
 }
 
-class _RecoverBody extends StatelessWidget {
-  const _RecoverBody();
-
+class _RecoverPassworPageState extends State<RecoverPassworPage> {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<LoginController>(context);

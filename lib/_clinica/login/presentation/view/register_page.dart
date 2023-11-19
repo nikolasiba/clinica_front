@@ -7,19 +7,14 @@ import 'package:clinica/shared/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (_) => LoginController(), child: const _BodyRegister());
-  }
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _BodyRegister extends StatelessWidget {
-  const _BodyRegister();
-
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     final loginController = Provider.of<LoginController>(context);

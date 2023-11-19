@@ -5,22 +5,14 @@ import 'package:clinica/shared/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PatientProfilePage extends StatelessWidget {
+class PatientProfilePage extends StatefulWidget {
   const PatientProfilePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (_) => PatientProfileController(), child: _ProfileBody());
-  }
+  State<PatientProfilePage> createState() => _PatientProfilePageState();
 }
 
-class _ProfileBody extends StatefulWidget {
-  @override
-  State<_ProfileBody> createState() => _ProfileBodyState();
-}
-
-class _ProfileBodyState extends State<_ProfileBody> {
+class _PatientProfilePageState extends State<PatientProfilePage> {
   bool _isInitialized = false;
 
   @override

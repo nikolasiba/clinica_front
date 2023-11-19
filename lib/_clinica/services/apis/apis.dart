@@ -12,4 +12,18 @@ class Apis {
   static final register = '$localHost/api/auth/sing-in';
 
   static final patientProfile = '$localHost/api/patient/get-patient-by-code/';
+
+  //clinic
+  static final getListSpecialization =
+      '$localHost/api/hospital/get-listSpecialization';
+  static final getListCity = '$localHost/api/hospital/get-listCity';
+  static final getListBloodType = '$localHost/api/hospital/get-listBloodType';
+  static final getListEPS = '$localHost/api/hospital/get-listEps';
+  //
+
+  //appoinment
+  static final getAvailableAppoinments =
+      '$localHost/api/patient/api/check-availability';
+  static final createAppoinment = '$localHost/api/patient/create-appointment';
+  //
 }
