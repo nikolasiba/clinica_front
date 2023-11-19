@@ -17,15 +17,16 @@ class NetworkApiService extends BaseApiService {
       String url, Object jsonBody,
       {Map<String, String> headers = const {}}) async {
     var response = await http
-        .put(Uri.parse(url), body: jsonBody, headers: headers)
+        .put(Uri.parse(url), body: jsonEncode(jsonBody), headers: headers)
         .timeout(const Duration(seconds: timeOutseconds));
 
     return (returnResponse(response, true));
   }
 
   @override
-  Future<Either<NetworkException, dynamic>> getResponse(String url) async {
-    final response = await http.get(Uri.parse(url));
+  Future<Either<NetworkException, dynamic>> getResponse(String url,
+      {Map<String, String> headers = const {}}) async {
+    final response = await http.get(Uri.parse(url), headers: headers);
     return returnResponse(response, true);
   }
 
@@ -34,7 +35,7 @@ class NetworkApiService extends BaseApiService {
       String url, Object jsonBody,
       {Map<String, String> headers = const {}}) async {
     var response = await http
-        .post(Uri.parse(url), body: jsonBody, headers: headers)
+        .post(Uri.parse(url), body: jsonEncode(jsonBody), headers: headers)
         .timeout(const Duration(seconds: timeOutseconds));
 
     return (returnResponse(response, true));
@@ -136,10 +137,10 @@ Either<NetworkException, dynamic> returnResponse(
     case 400:
       dynamic responseJson = jsonDecode(response.body);
       if (isJson) {
-        return Left(BadRequestException(responseJson['message']));
+        return Left(BadRequestException(responseJson['response']));
       } else {
         var error =
-            'Error occured while communication with server with status code : ${response.statusCode}, message: ${response.body}';
+            'Error occured while communication with server with status code : ${response.statusCode}, response: ${response.body}';
 
         return Left(BadRequestException(error));
       }
@@ -149,16 +150,16 @@ Either<NetworkException, dynamic> returnResponse(
       dynamic responseJson = jsonDecode(response.body);
       log(responseJson);
 
-      return Left(BadRequestException(responseJson['message']));
+      return Left(BadRequestException(responseJson['response']));
     case 404:
       dynamic responseJson = jsonDecode(response.body);
       log(responseJson.toString());
 
-      return Left(BadRequestException(responseJson['message']));
+      return Left(BadRequestException(responseJson['response']));
     case 500:
       dynamic responseJson = jsonDecode(response.body);
-      log(responseJson);
-      return Left(BadRequestException(responseJson['message']));
+      log(responseJson.toString());
+      return Left(BadRequestException(responseJson['response']));
     case 502:
       dynamic responseJson = jsonDecode(response.body);
       log(responseJson);
@@ -167,6 +168,6 @@ Either<NetworkException, dynamic> returnResponse(
     default:
       return Left(FetchDataException(
           'Error occured while communication with server'
-          ' with status code : ${response.statusCode}, message: ${response.body}'));
+          ' with status code : ${response.statusCode}, response: ${response.body}'));
   }
 }

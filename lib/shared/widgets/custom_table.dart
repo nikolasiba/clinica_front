@@ -4,17 +4,17 @@ import 'package:clinica/shared/util/responsive.dart';
 import 'package:flutter/material.dart';
 
 class TableCustomWg extends StatelessWidget {
-  List<DataColumn>? listColumns;
-  List<DataRow>? listRow;
-  List<String>? listDataColumns;
-  double? widgthRow;
-  List<List<String>>? listDataRow;
-  Color? colorTextColumn;
-  Color? colorTextRow;
-  bool colorPrimary;
+  final List<DataColumn>? listColumns;
+  final List<DataRow>? listRow;
+  final List<String>? listDataColumns;
+  final double? widgthRow;
+  final List<List<String>>? listDataRow;
+  final Color? colorTextColumn;
+  final Color? colorTextRow;
+  final bool colorPrimary;
 
-  TableCustomWg(
-      {Key? key,
+  const TableCustomWg(
+      {super.key,
       this.listColumns,
       this.listRow,
       this.listDataColumns,
@@ -22,8 +22,7 @@ class TableCustomWg extends StatelessWidget {
       this.colorTextColumn,
       this.widgthRow,
       this.colorPrimary = false,
-      this.colorTextRow})
-      : super(key: key);
+      this.colorTextRow});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,8 @@ class TableCustomWg extends StatelessWidget {
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15), topRight: Radius.circular(15)),
         child: DataTable(
-            dataRowHeight: Responsive.of(context).height * 0.05,
+            dataRowMaxHeight: Responsive.of(context).height * 0.05,
+            headingRowHeight: Responsive.of(context).height * 0.05,
             columnSpacing: 5,
             headingRowColor: MaterialStateColor.resolveWith(
               (states) => colorPrimary

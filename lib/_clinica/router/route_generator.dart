@@ -1,6 +1,7 @@
 import 'package:clinica/_clinica/doctor/appointment_detail/presentation/view/appointment_detail_pg.dart';
 import 'package:clinica/_clinica/doctor/start_day/presentation/view/start_day_pg.dart';
 import 'package:clinica/_clinica/patient/appoinment/presentation/view/appoinments_pg.dart';
+import 'package:clinica/_clinica/patient/appoinment/presentation/view/select_appoinment.dart';
 import 'package:clinica/_clinica/patient/patient_profile/presentation/view/profile_pg.dart';
 import 'package:clinica/_clinica/login/presentation/view/register_page.dart';
 import 'package:clinica/_clinica/doctor/manage_agenda/presentation/view/manage_agenda_pg.dart';
@@ -31,6 +32,9 @@ class RouteGenerator {
       case '/appoinments':
         return _fadeRoute(const PatientAppoinmentPage(), '/appoinments');
 
+      case '/select_appoinment':
+        return _fadeRoute(const SelectAppoinmentPage(), '/select_appoinment');
+
       case '/petitions':
         return _fadeRoute(const PetitionPage(), '/petitions');
 
@@ -38,7 +42,7 @@ class RouteGenerator {
         return _fadeRoute(const RegisterPage(), '/register');
 
       case '/manage_agenda':
-        return _fadeRoute(ManageAgendaPage(), '/manage_agenda');
+        return _fadeRoute(const ManageAgendaPage(), '/manage_agenda');
 
       case '/start_day':
         return _fadeRoute(const StartDayPage(), '/start_day');

@@ -15,10 +15,11 @@ dependencies:
   auto_size_text: ^3.0.0
   get_it: ^7.6.4
   hexcolor: ^3.0.1
+  intl: ^0.18.1
   provider: ^6.1.1
+  jwt_decoder: ^2.0.1
 
   shared_preferences: ^2.2.2
-
 
   cupertino_icons: ^1.0.2
   http: ^1.1.0

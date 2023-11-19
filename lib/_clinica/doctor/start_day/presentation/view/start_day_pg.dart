@@ -19,10 +19,11 @@ class StartDayPage extends StatelessWidget {
 }
 
 class _StartDayBody extends StatelessWidget {
-  const _StartDayBody({super.key});
+  const _StartDayBody();
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return CustomPage(
       innerContainer: true,
       body: CustomDialog(
@@ -34,10 +35,19 @@ class _StartDayBody extends StatelessWidget {
         title: Text('Iniciar Jornada',
             style: TextStyle(
               color: ConstColors.primaryColor,
+=======
+    return const CustomPage(
+      body: CustomDialog(
+        //Advertencia
+        title: Text('No se que titulo ponerle a este dialogo',
+            style: TextStyle(
+              color: Colors.grey,
+>>>>>>> b4f219e44d6ad8584fc743718097fbf525acf431
               fontSize: 20,
               fontWeight: FontWeight.bold,
             )),
         content: Padding(
+<<<<<<< HEAD
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
@@ -132,6 +142,19 @@ class _StartDayBody extends StatelessWidget {
                 )
               ],
             )),
+=======
+          padding: EdgeInsets.all(10),
+          child: Center(
+              child: Text(
+            'aa',
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 15,
+            ),
+            textAlign: TextAlign.center,
+          )),
+        ),
+>>>>>>> b4f219e44d6ad8584fc743718097fbf525acf431
       ),
     );
   }

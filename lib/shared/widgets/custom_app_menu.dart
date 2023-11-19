@@ -14,7 +14,7 @@ class CustomAppMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (_, constraints) =>
-            _prefs.role == 'paciente' ? _PatientpMenu() : _DoctrMenu());
+            _prefs.role == 'Patient' ? _PatientpMenu() : _DoctrMenu());
   }
 }
 

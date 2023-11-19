@@ -5,22 +5,22 @@ import 'package:clinica/shared/widgets/separator.dart';
 import 'package:flutter/material.dart';
 
 class CustomPage extends StatelessWidget {
-  CustomPage({
-    Key? key,
+  const CustomPage({
+    super.key,
     required this.body,
     this.verticalPadding = 10.0,
     this.horizontalPadding = 20.0,
     this.appBarMenu = true,
     this.innerContainer = false,
     this.backgroundColor,
-  }) : super(key: key);
+  });
 
   final Widget body;
-  double verticalPadding;
-  double horizontalPadding;
-  bool appBarMenu;
-  bool innerContainer;
-  Color? backgroundColor;
+  final double verticalPadding;
+  final double horizontalPadding;
+  final bool appBarMenu;
+  final bool innerContainer;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {

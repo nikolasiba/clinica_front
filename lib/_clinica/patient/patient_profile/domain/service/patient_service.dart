@@ -1,12 +1,15 @@
 import 'package:clinica/_clinica/patient/patient_profile/domain/interface/i_patient_pr.dart';
+import 'package:clinica/_clinica/services/data/remote/error/network_error.dart';
+import 'package:either_dart/either.dart';
 
-class PatientService {
+class PatientProfileService {
   final IPatientProfile iPatientProfile;
 
-  PatientService(this.iPatientProfile);
+  PatientProfileService(this.iPatientProfile);
 
-  Future<void> getPatientProfile() async {
-    return await iPatientProfile.getPatientProfile();
+  Future<Either<NetworkException, dynamic>> getPatientProfile(
+      {required String code}) async {
+    return await iPatientProfile.getPatientProfile(code: code);
   }
 
   Future<void> updatePatientProfile() async {
