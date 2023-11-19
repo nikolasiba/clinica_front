@@ -14,6 +14,7 @@ class CustomTextField extends StatefulWidget {
     this.height,
     this.prefixIcon,
     this.textColor,
+    this.onTap,
   });
 
   final TextEditingController textEditingController;
@@ -26,6 +27,7 @@ class CustomTextField extends StatefulWidget {
   final Icon? prefixIcon;
   final Color? borderColor;
   final Color? textColor;
+  final void Function()? onTap;
 
   @override
   CustomTextFieldState createState() => CustomTextFieldState();
@@ -50,6 +52,7 @@ class CustomTextFieldState extends State<CustomTextField> {
             keyboardType: widget.keyboardType,
             controller: widget.textEditingController,
             onChanged: widget.onChanged,
+            onTap: widget.onTap,
             style: TextStyle(
                 color: widget.textColor ?? Colors.black, fontSize: 18),
             decoration: InputDecoration(

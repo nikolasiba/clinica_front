@@ -1,77 +1,108 @@
+import 'package:clinica/_clinica/patient/appoinment/presentation/controller/appoinment_ctrl.dart';
 import 'package:clinica/shared/colors/colors.dart';
 import 'package:clinica/shared/util/responsive.dart';
-import 'package:clinica/shared/widgets/custom_app_menu.dart';
-import 'package:clinica/shared/widgets/custom_button.dart';
-import 'package:clinica/shared/widgets/separator.dart';
+import 'package:clinica/shared/widgets/custom_drop_down.dart';
+import 'package:clinica/shared/widgets/custom_page.dart';
+import 'package:clinica/shared/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class PatientAppoinmentPage extends StatelessWidget {
+class PatientAppoinmentPage extends StatefulWidget {
   const PatientAppoinmentPage({super.key});
 
   @override
+  State<PatientAppoinmentPage> createState() => _PatientAppoinmentPageState();
+}
+
+class _PatientAppoinmentPageState extends State<PatientAppoinmentPage> {
+  bool _isInitialized = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isInitialized) {
+      final appoinmentController = Provider.of<AppoinmentController>(context);
+      appoinmentController.getSpecialization();
+      _isInitialized = true;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[300],
-      appBar: AppBar(
-        backgroundColor: ConstColors.primaryColor,
-        leading: Container(),
-        title: CustomAppMenu(),
-      ),
-      body: Stack(
+    final responsive = Responsive(context);
+
+    final controller = Provider.of<AppoinmentController>(context);
+
+    return CustomPage(
+      body: Column(
         children: [
-          Center(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const Separator(size: 2),
-                  Container(
-                    height: Responsive.of(context).height * .9,
-                    width: Responsive.of(context).width * .85,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20)),
-                    padding: const EdgeInsets.all(40),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.person,
-                          size: 150,
-                          color: ConstColors.primaryColor,
-                        ),
-                        Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Tus datos Personales',
-                              style: TextStyle(
-                                color: ConstColors.primaryColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
-                        const Separator(size: 4),
-                        const Separator(size: 14),
-                        const Spacer(),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: CustomButton(
-                            onPressed: () {},
-                            text: 'Actualizar',
-                            width: Responsive.of(context).width * .5,
-                            backgroundColor: ConstColors.primaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Separator(size: 2),
-                  Container(
-                      color: ConstColors.primaryColor,
-                      width: Responsive.of(context).width,
-                      height: Responsive.of(context).height * .07)
-                ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                  flex: 1,
+                  child: CustomDropDownButtom(
+                    list: controller.listSpecialization,
+                    selectedValue: controller.selectValue,
+                    onChanged: (dynamic value) {
+                      controller.changeSpecialization(value);
+                    },
+                  )),
+              Flexible(
+                flex: 1,
+                child: CustomButton(
+                    onPressed: () {
+                      controller.validateSpecilization(context);
+                    },
+                    text: 'Consultar Disponibilidad',
+                    backgroundColor: ConstColors.primaryColor,
+                    width: responsive.wp(25)),
               ),
+            ],
+          ),
+          const Separator(size: 2),
+          Container(
+            padding: const EdgeInsets.only(left: 40, top: 20),
+            width: double.infinity,
+            height: responsive.hp(8),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: ConstColors.primaryColor),
+            child: const Text(
+              'Mis Citas',
+              style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           ),
+          const Separator(size: 2),
+          controller.myAppoinments.isEmpty
+              ? const Center(child: Text('No hay tienes citas pendientes'))
+              : SizedBox(
+                  width: double.infinity,
+                  child: DataTable(
+                      border: TableBorder.all(
+                          borderRadius: BorderRadius.circular(10),
+                          color: ConstColors.secundayColor,
+                          style: BorderStyle.solid,
+                          width: 1),
+                      columns: const [
+                        DataColumn(label: Text('Fecha - Hora')),
+                        DataColumn(label: Text('EPS')),
+                        DataColumn(label: Text('Servicio')),
+                        DataColumn(label: Text('Profecional')),
+                        DataColumn(label: Text('Cancelar')),
+                      ],
+                      rows: const []),
+                ),
+          const Spacer(),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: CustomButton(
+                width: responsive.wp(35),
+                height: responsive.hp(5),
+                onPressed: () {},
+                text: 'Mi historial',
+                backgroundColor: ConstColors.primaryColor),
+          )
         ],
       ),
     );
