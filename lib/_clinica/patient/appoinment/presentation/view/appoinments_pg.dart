@@ -23,6 +23,7 @@ class _PatientAppoinmentPageState extends State<PatientAppoinmentPage> {
     if (!_isInitialized) {
       final appoinmentController = Provider.of<AppoinmentController>(context);
       appoinmentController.getSpecialization();
+      appoinmentController.getAppoinments();
       _isInitialized = true;
     }
   }
@@ -77,29 +78,50 @@ class _PatientAppoinmentPageState extends State<PatientAppoinmentPage> {
           controller.myAppoinments.isEmpty
               ? const Center(child: Text('No hay tienes citas pendientes'))
               : SizedBox(
+                  height: responsive.hp(45),
                   width: double.infinity,
-                  child: DataTable(
-                      border: TableBorder.all(
-                          borderRadius: BorderRadius.circular(10),
-                          color: ConstColors.secundayColor,
-                          style: BorderStyle.solid,
-                          width: 1),
-                      columns: const [
-                        DataColumn(label: Text('Fecha - Hora')),
-                        DataColumn(label: Text('EPS')),
-                        DataColumn(label: Text('Servicio')),
-                        DataColumn(label: Text('Profecional')),
-                        DataColumn(label: Text('Cancelar')),
-                      ],
-                      rows: const []),
-                ),
+                  child: RawScrollbar(
+                    thumbVisibility: true,
+                    thumbColor: ConstColors.primaryColor,
+                    child: SingleChildScrollView(
+                      child: DataTable(
+                          border: TableBorder.all(
+                              borderRadius: BorderRadius.circular(10),
+                              color: ConstColors.secundayColor,
+                              style: BorderStyle.solid,
+                              width: 1),
+                          columns: const [
+                            DataColumn(label: Text('Fecha - Hora')),
+                            DataColumn(label: Text('EPS')),
+                            DataColumn(label: Text('Servicio')),
+                            DataColumn(label: Text('Profesional')),
+                            DataColumn(label: Text('Cancelar')),
+                          ],
+                          rows: controller.myAppoinments
+                              .map((e) => DataRow(cells: [
+                                    DataCell(Text(e.day.toString())),
+                                    DataCell(Text(e.eps!)),
+                                    DataCell(Text(e.specialization!)),
+                                    DataCell(Text(e.doctorName!)),
+                                    DataCell(IconButton(
+                                        onPressed: () async {
+                                          await controller.cancelAppoinment(
+                                              e.appoinmentCode!);
+                                        },
+                                        icon: const Icon(Icons.cancel)))
+                                  ]))
+                              .toList()),
+                    ),
+                  )),
           const Spacer(),
           Align(
             alignment: Alignment.centerLeft,
             child: CustomButton(
                 width: responsive.wp(35),
                 height: responsive.hp(5),
-                onPressed: () {},
+                onPressed: () async {
+                  await controller.getHistoryAppoinments();
+                },
                 text: 'Mi historial',
                 backgroundColor: ConstColors.primaryColor),
           )

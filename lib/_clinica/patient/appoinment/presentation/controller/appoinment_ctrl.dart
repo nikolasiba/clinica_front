@@ -3,7 +3,10 @@ import 'dart:developer';
 import 'package:clinica/_clinica/data_clinic/domain/service/clinic_service.dart';
 import 'package:clinica/_clinica/data_clinic/repository/clinic_repository.dart';
 import 'package:clinica/_clinica/login/domain/model/user_model.dart';
+import 'package:clinica/_clinica/patient/appoinment/domain/model/attention_detail_model.dart';
 import 'package:clinica/_clinica/patient/appoinment/domain/model/available_apoinment_model.dart';
+import 'package:clinica/_clinica/patient/appoinment/domain/model/history_model.dart';
+import 'package:clinica/_clinica/patient/appoinment/domain/model/my_apoinmet_model.dart';
 import 'package:clinica/_clinica/patient/appoinment/domain/service/appoinment_service.dart';
 import 'package:clinica/_clinica/patient/appoinment/repository/appoinment_repo.dart';
 import 'package:clinica/_clinica/services/navigation_service.dart';
@@ -21,7 +24,9 @@ class AppoinmentController extends ChangeNotifier {
   String selectValue = 'Seleccione una especialidad';
 
   List<AvailableAppoinment> availableAppoinments = [];
-  List myAppoinments = [];
+  List<MyAppointmentModel> myAppoinments = [];
+  List<HistoryModel> historyAppoinments = [];
+  AttentionDetailModel attentionDetailModel = AttentionDetailModel();
 
   Future<void> getSpecialization() async {
     Either response = await clinicService.getSpecialties();
@@ -82,14 +87,97 @@ class AppoinmentController extends ChangeNotifier {
           onRightPressed: () {
             locator<NavigationService>().navigateTo('/profile');
           });
+    } else {
+      Utils.device.showDialogCustom(
+          context: locator<NavigationService>().navigatorKey.currentContext!,
+          message: response.left.message,
+          onRightPressed: () {
+            Navigator.pop(
+                locator<NavigationService>().navigatorKey.currentContext!);
+          });
     }
   }
 
-  // Future<void> getAppoinments() async {
-  //   Either response = await appoinmentService.getAppoinments();
-  //   if (response.isRight) {
-  //     appoinments = response.right;
-  //     notifyListeners();
-  //   }
-  // }
+  Future<void> getAppoinments() async {
+    UserModel user = Utils.data.getUser();
+    Either response =
+        await appoinmentService.getMyAppointment(patientCode: user.id!);
+    if (response.isRight) {
+      myAppoinments = response.right
+          .map<MyAppointmentModel>((e) => MyAppointmentModel.fromJson(e))
+          .toList();
+      notifyListeners();
+    }
+  }
+
+  Future<void> cancelAppoinment(int code) async {
+    Either response =
+        await appoinmentService.cancelAppoinment(appoinmentCode: code);
+    if (response.isRight) {
+      await getAppoinments();
+      Utils.device.showDialogCustom(
+          context: locator<NavigationService>().navigatorKey.currentContext!,
+          message: 'Cita cancelada correctamente',
+          onRightPressed: () {
+            Navigator.pop(
+                locator<NavigationService>().navigatorKey.currentContext!);
+          });
+    } else {
+      Utils.device.showDialogCustom(
+          context: locator<NavigationService>().navigatorKey.currentContext!,
+          message: response.left.message,
+          onRightPressed: () {
+            Navigator.pop(
+                locator<NavigationService>().navigatorKey.currentContext!);
+          });
+    }
+  }
+
+  Future<void> getHistoryAppoinments() async {
+    UserModel user = Utils.data.getUser();
+    Either response = await appoinmentService.getHistory(patientCode: user.id!);
+    if (response.isRight) {
+      historyAppoinments = response.right
+          .map<HistoryModel>((e) => HistoryModel.fromJson(e))
+          .toList();
+      notifyListeners();
+      if (historyAppoinments.isEmpty) {
+        Utils.device.showDialogCustom(
+            context: locator<NavigationService>().navigatorKey.currentContext!,
+            message: 'No tienes citas anteriores',
+            onRightPressed: () {
+              Navigator.pop(
+                  locator<NavigationService>().navigatorKey.currentContext!);
+            });
+      } else {
+        locator<NavigationService>().navigateTo('/history_appoinment');
+      }
+    } else {
+      Utils.device.showDialogCustom(
+          context: locator<NavigationService>().navigatorKey.currentContext!,
+          message: response.left.message,
+          onRightPressed: () {
+            Navigator.pop(
+                locator<NavigationService>().navigatorKey.currentContext!);
+          });
+    }
+  }
+
+  Future<void> getAttentionDetail(int code) async {
+    attentionDetailModel = AttentionDetailModel();
+    Either response =
+        await appoinmentService.attentionDetail(appoinmentCode: code);
+    if (response.isRight) {
+      attentionDetailModel = AttentionDetailModel.fromJson(response.right);
+      notifyListeners();
+    } else {
+      Utils.device.showDialogCustom(
+          context: locator<NavigationService>().navigatorKey.currentContext!,
+          message: response.left.message,
+          onRightPressed: () {
+            Navigator.pop(
+                locator<NavigationService>().navigatorKey.currentContext!);
+          });
+    }
+  }
 }

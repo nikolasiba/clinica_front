@@ -28,9 +28,24 @@ class _SelectAppoinmentPageState extends State<SelectAppoinmentPage> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: ConstColors.primaryColor),
-            child: const Text(
-              'Citas diponibles para ti',
-              style: TextStyle(color: Colors.white, fontSize: 20),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: responsive.dp(2),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                const Text(
+                  'Citas diponibles para ti',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ],
             ),
           ),
           const Separator(size: 2),
