@@ -25,5 +25,11 @@ class Apis {
   static final getAvailableAppoinments =
       '$localHost/api/patient/api/check-availability';
   static final createAppoinment = '$localHost/api/patient/create-appointment';
+  static final getMyAppointments =
+      '$localHost/api/patient/get-patient-schedule';
+  static final cancelAppoinment = '$localHost/api/patient/cancel-appointment';
+  static final getHistory = '$localHost/api/patient/get-patient-history';
+  static final attentionDetail =
+      '$localHost/api/patient/get-choosed-appointment';
   //
 }

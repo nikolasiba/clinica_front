@@ -7,8 +7,9 @@ class AppoinmentService {
 
   AppoinmentService(this.iAppoinment);
 
-  Future<Either<NetworkException, dynamic>> getMyAppointment() async {
-    return await iAppoinment.getMyAppointments();
+  Future<Either<NetworkException, dynamic>> getMyAppointment(
+      {required int patientCode}) async {
+    return await iAppoinment.getMyAppointments(patientCode: patientCode);
   }
 
   Future<Either<NetworkException, dynamic>> getAvaliableAppoinments(
@@ -20,5 +21,20 @@ class AppoinmentService {
   Future<Either<NetworkException, dynamic>> createAppoinment(
       {required Object data}) async {
     return await iAppoinment.createAppoinment(data: data);
+  }
+
+  Future<Either<NetworkException, dynamic>> cancelAppoinment(
+      {required int appoinmentCode}) async {
+    return await iAppoinment.cancelAppoinment(appoinmentCode: appoinmentCode);
+  }
+
+  Future<Either<NetworkException, dynamic>> getHistory(
+      {required int patientCode}) async {
+    return await iAppoinment.getHistory(patientCode: patientCode);
+  }
+
+  Future<Either<NetworkException, dynamic>> attentionDetail(
+      {required int appoinmentCode}) async {
+    return await iAppoinment.attentionDetail(appoinmentCode: appoinmentCode);
   }
 }

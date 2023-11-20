@@ -9,8 +9,16 @@ import '../domain/interface/i_appoinment.dart';
 class AppoinmentRepository implements IAppoinment {
   final prefs = Preferences();
   @override
-  Future<Either<NetworkException, dynamic>> getMyAppointments() {
-    throw UnimplementedError();
+  Future<Either<NetworkException, dynamic>> getMyAppointments(
+      {required int patientCode}) async {
+    var apiService = NetworkApiService();
+
+    var headers = {'Authorization': 'Bearer ${prefs.token}'};
+
+    String url = '${Apis.getMyAppointments}/$patientCode';
+
+    dynamic response = await apiService.getResponse(url, headers: headers);
+    return response;
   }
 
   @override
@@ -41,6 +49,45 @@ class AppoinmentRepository implements IAppoinment {
 
     dynamic response =
         await apiService.postResponse(url, data, headers: headers);
+    return response;
+  }
+
+  @override
+  Future<Either<NetworkException, dynamic>> cancelAppoinment(
+      {required int appoinmentCode}) async {
+    var apiService = NetworkApiService();
+
+    var headers = {'Authorization': 'Bearer ${prefs.token}'};
+
+    String url = '${Apis.cancelAppoinment}/$appoinmentCode';
+
+    dynamic response = await apiService.putResponse(url, {}, headers: headers);
+    return response;
+  }
+
+  @override
+  Future<Either<NetworkException, dynamic>> getHistory(
+      {required int patientCode}) async {
+    var apiService = NetworkApiService();
+
+    var headers = {'Authorization': 'Bearer ${prefs.token}'};
+
+    String url = '${Apis.getHistory}/$patientCode';
+
+    dynamic response = await apiService.getResponse(url, headers: headers);
+    return response;
+  }
+
+  @override
+  Future<Either<NetworkException, dynamic>> attentionDetail(
+      {required int appoinmentCode}) async {
+    var apiService = NetworkApiService();
+
+    var headers = {'Authorization': 'Bearer ${prefs.token}'};
+
+    String url = '${Apis.attentionDetail}/$appoinmentCode';
+
+    dynamic response = await apiService.getResponse(url, headers: headers);
     return response;
   }
 }
