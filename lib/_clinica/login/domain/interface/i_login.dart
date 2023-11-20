@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:clinica/_clinica/login/domain/model/register.dart';
 import 'package:clinica/_clinica/services/data/remote/error/network_error.dart';
 import 'package:either_dart/either.dart';
@@ -17,4 +19,6 @@ abstract class ILogin {
     required String password,
     required String newPassword,
   });
+
+  Future<Either<NetworkException, dynamic>> uploadPictur({required File file});
 }

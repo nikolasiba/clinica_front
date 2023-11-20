@@ -1,3 +1,5 @@
+import 'dart:io';
+
 abstract class BaseApiService {
   Future<dynamic> getResponse(String url);
   Future<dynamic> getFile(String url);
@@ -12,6 +14,6 @@ abstract class BaseApiService {
   Future<dynamic> postResponseHeaders(
       String url, Object jsonBody, Map<String, String> headers);
 
-  Future<dynamic> uploadPhoto(String url, String filePath,
+  Future<dynamic> uploadPhoto(String url, File filePath,
       {Map<String, String> headers = const {}});
 }

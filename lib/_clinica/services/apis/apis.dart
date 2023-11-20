@@ -12,6 +12,7 @@ class Apis {
   static final register = '$localHost/api/auth/sing-in';
 
   static final patientProfile = '$localHost/api/patient/get-patient-by-code/';
+  static final updatePatientProfile = '$localHost/api/patient/edit-account';
 
   //clinic
   static final getListSpecialization =
@@ -32,4 +33,8 @@ class Apis {
   static final attentionDetail =
       '$localHost/api/patient/get-choosed-appointment';
   //
+
+  static final uploadPicture = '$localHost/api/images/upload';
+  //
+  static final getPetitions = '$localHost/api/patient/get-petition-by-patient';
 }

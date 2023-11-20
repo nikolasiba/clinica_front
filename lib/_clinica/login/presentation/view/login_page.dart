@@ -100,7 +100,8 @@ class _LoginPageState extends State<LoginPage> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                        onPressed: () {
+                        onPressed: () async {
+                          await controller.getInitialData();
                           locator<NavigationService>().navigateTo('/register');
                         },
                         child: const Text(

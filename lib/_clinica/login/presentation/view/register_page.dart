@@ -3,6 +3,7 @@ import 'package:clinica/shared/assets/assets.dart';
 import 'package:clinica/shared/colors/colors.dart';
 import 'package:clinica/shared/util/responsive.dart';
 import 'package:clinica/shared/widgets/custom_button.dart';
+import 'package:clinica/shared/widgets/custom_drop_down.dart';
 import 'package:clinica/shared/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -43,6 +44,8 @@ class _RegisterPageState extends State<RegisterPage> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: RawScrollbar(
+              thumbVisibility: true,
+              thumbColor: Colors.white,
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -81,12 +84,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                     loginController.phoneController,
                               ),
                               const SizedBox(height: 20),
-                              CustomTextField(
-                                labelText: 'ciudad',
-                                textColor: Colors.white,
-                                textEditingController:
-                                    loginController.cityController,
-                              ),
+                              CustomDropDownButtom(
+                                  list: loginController.cities,
+                                  selectedValue: loginController.selectedCity,
+                                  borderColor: Colors.white,
+                                  textColor: Colors.white,
+                                  backgroundColor: ConstColors.primaryColor,
+                                  onChanged: (value) {
+                                    loginController.customOnchanges(value!, 3);
+                                  }),
                               const SizedBox(height: 20),
                             ],
                           ),
@@ -115,19 +121,28 @@ class _RegisterPageState extends State<RegisterPage> {
                                     loginController.allergiesController,
                               ),
                               const SizedBox(height: 20),
-                              CustomTextField(
-                                labelText: 'EPS',
-                                textColor: Colors.white,
-                                textEditingController:
-                                    loginController.epsController,
-                              ),
+                              //eps
+                              CustomDropDownButtom(
+                                  list: loginController.eps,
+                                  selectedValue: loginController.selectedEps,
+                                  textColor: Colors.white,
+                                  backgroundColor: ConstColors.primaryColor,
+                                  onChanged: (value) {
+                                    loginController.customOnchanges(value!, 1);
+                                  },
+                                  borderColor: Colors.white),
                               const SizedBox(height: 20),
-                              CustomTextField(
-                                labelText: 'Tipo de sangre',
-                                textColor: Colors.white,
-                                textEditingController:
-                                    loginController.bloodTypeController,
-                              ),
+                              //tipo de sangre
+                              CustomDropDownButtom(
+                                  list: loginController.bloodTypes,
+                                  selectedValue:
+                                      loginController.selectedBloodType,
+                                  borderColor: Colors.white,
+                                  textColor: Colors.white,
+                                  backgroundColor: ConstColors.primaryColor,
+                                  onChanged: (value) {
+                                    loginController.customOnchanges(value!, 2);
+                                  }),
                               const SizedBox(height: 20),
                             ],
                           ),
@@ -147,8 +162,16 @@ class _RegisterPageState extends State<RegisterPage> {
                                 border:
                                     Border.all(color: Colors.white, width: 8),
                               ),
-                              child: Icon(Icons.add_a_photo_outlined,
-                                  color: Colors.white, size: responsive.dp(8)),
+                              child: InkWell(
+                                onTap: () {
+                                  loginController.pickedFile();
+                                },
+                                child: loginController.imageFile == null
+                                    ? Icon(Icons.add_a_photo_outlined,
+                                        color: Colors.white,
+                                        size: responsive.dp(8))
+                                    : Image.file(loginController.imageFile!),
+                              ),
                             ),
                           ),
                         ),
