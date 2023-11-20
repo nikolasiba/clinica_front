@@ -4,6 +4,7 @@ import 'package:either_dart/either.dart';
 abstract class IPatientProfile {
   Future<Either<NetworkException, dynamic>> getPatientProfile(
       {required String code});
-  Future<void> updatePatientProfile();
+  Future<Either<NetworkException, dynamic>> updatePatientProfile(
+      {required Object object});
   Future<void> deletePatientProfile();
 }

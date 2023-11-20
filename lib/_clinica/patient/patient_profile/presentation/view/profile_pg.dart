@@ -1,4 +1,6 @@
 import 'package:clinica/_clinica/patient/patient_profile/presentation/controller/profile_ctr.dart';
+import 'package:clinica/_clinica/services/navigation_service.dart';
+import 'package:clinica/locator.dart';
 import 'package:clinica/shared/colors/colors.dart';
 import 'package:clinica/shared/util/responsive.dart';
 import 'package:clinica/shared/widgets/widgets.dart';
@@ -27,6 +29,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<PatientProfileController>(context);
     return Scaffold(
       appBar: AppBar(
         title: CustomAppMenu(),
@@ -73,7 +76,11 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: CustomButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              await controller.getData();
+                              locator<NavigationService>()
+                                  .navigateTo('/update_data');
+                            },
                             text: 'Actualizar',
                             width: Responsive.of(context).width * .5,
                             backgroundColor: ConstColors.primaryColor,

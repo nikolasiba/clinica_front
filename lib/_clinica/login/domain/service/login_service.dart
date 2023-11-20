@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:clinica/_clinica/login/domain/interface/i_login.dart';
 import 'package:clinica/_clinica/login/domain/model/register.dart';
 import 'package:clinica/_clinica/services/data/remote/error/network_error.dart';
@@ -24,5 +26,10 @@ class LoginService {
       required String newPassword}) async {
     return await iLogin.changePassword(
         email: email, password: password, newPassword: newPassword);
+  }
+
+  Future<Either<NetworkException, dynamic>> uploadPictur(
+      {required File file}) async {
+    return await iLogin.uploadPictur(file: file);
   }
 }

@@ -122,17 +122,89 @@ class _HistoryAppointmentPageState extends State<HistoryAppointmentPage> {
     final controller = Provider.of<AppoinmentController>(context);
 
     return AlertDialog(
-        title: const Text('Hsitorial de cita'),
+        title: Text(
+          'Historial de cita',
+          style: TextStyle(
+              color: ConstColors.primaryColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 20),
+        ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         content: Container(
           padding: const EdgeInsets.all(10),
-          height: 300,
-          width: 600,
+          height: 200,
+          width: 500,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Detalles de la cita'),
-              Text(controller.attentionDetailModel.codeAppointment.toString()),
-              Text(controller.attentionDetailModel.diagnosis!),
+              Text(
+                'Detalles de la cita',
+                style: TextStyle(
+                    color: ConstColors.primaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+              const Separator(size: 3),
+              RichText(
+                  text: TextSpan(
+                      text: 'Diagnostico: ',
+                      style: TextStyle(
+                          color: ConstColors.primaryColor,
+                          fontWeight: FontWeight.bold),
+                      children: [
+                    TextSpan(
+                      text: controller.attentionDetailModel.diagnosis,
+                      style: TextStyle(
+                          color: ConstColors.secundayColor,
+                          fontWeight: FontWeight.normal),
+                    )
+                  ])),
+              const Separator(size: 3),
+              RichText(
+                  text: TextSpan(
+                      text: 'Notas medicas: ',
+                      style: TextStyle(
+                          color: ConstColors.primaryColor,
+                          fontWeight: FontWeight.bold),
+                      children: [
+                    TextSpan(
+                      text: controller.attentionDetailModel.medicalNotes,
+                      style: TextStyle(
+                          color: ConstColors.secundayColor,
+                          fontWeight: FontWeight.normal),
+                    )
+                  ])),
+              const Separator(size: 3),
+              RichText(
+                  text: TextSpan(
+                      text: 'Diagnostico: ',
+                      style: TextStyle(
+                          color: ConstColors.primaryColor,
+                          fontWeight: FontWeight.bold),
+                      children: [
+                    TextSpan(
+                      text: controller.attentionDetailModel.diagnosis,
+                      style: TextStyle(
+                          color: ConstColors.secundayColor,
+                          fontWeight: FontWeight.normal),
+                    )
+                  ])),
+              const Separator(size: 3),
+              RichText(
+                  text: TextSpan(
+                      text: 'Tratamiento: ',
+                      style: TextStyle(
+                          color: ConstColors.primaryColor,
+                          fontWeight: FontWeight.bold),
+                      children: [
+                    TextSpan(
+                      text: controller.attentionDetailModel.treatment,
+                      style: TextStyle(
+                          color: ConstColors.secundayColor,
+                          fontWeight: FontWeight.normal),
+                    )
+                  ])),
             ],
           ),
         ),

@@ -88,19 +88,19 @@ class NetworkApiService extends BaseApiService {
   }
 
   @override
-  Future uploadPhoto(String url, String filePath,
+  Future uploadPhoto(String url, File filePath,
       {Map<String, String> headers = const {}}) async {
     var uri = Uri.parse(url);
 
-    final file = http.MultipartFile.fromBytes(
-        'picture', File(filePath).readAsBytesSync(),
-        filename: filePath.split("/").last);
+    final fileBytes = await filePath.readAsBytes();
+
+    final file2 = http.MultipartFile.fromBytes('picture', fileBytes,
+        filename: filePath.path.split('/').last);
 
     var request = http.MultipartRequest('POST', uri);
     request.headers.addAll(headers);
 
-    // final file = await http.MultipartFile.fromPath('image', filePath);
-    request.files.add(file);
+    request.files.add(file2);
 
     var response = await request.send();
     var responsed = await http.Response.fromStream(response);
