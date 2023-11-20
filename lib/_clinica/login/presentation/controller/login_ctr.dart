@@ -46,7 +46,7 @@ class LoginController extends ChangeNotifier {
       if (prefs.role == 'Patient') {
         route = '/profile';
       } else if (prefs.role == 'Doctor') {
-        route = '/doctor';
+        route = '/manage_agenda';
       }
 
       if (route.isNotEmpty) {

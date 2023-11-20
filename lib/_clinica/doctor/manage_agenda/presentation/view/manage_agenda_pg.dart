@@ -85,7 +85,7 @@ class _ManageAgendaBody extends StatelessWidget {
               onPressed: () {
                 controller.printA();
               },
-              text: 'Actualizar',
+              text: 'Cerrar',
               width: Responsive.of(context).width * .5,
               backgroundColor: ConstColors.primaryColor,
             ),

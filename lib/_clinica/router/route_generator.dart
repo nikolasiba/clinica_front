@@ -1,6 +1,7 @@
 import 'package:clinica/_clinica/doctor/appointment_detail/presentation/view/appointment_detail_pg.dart';
 import 'package:clinica/_clinica/doctor/start_day/presentation/view/start_day_pg.dart';
 import 'package:clinica/_clinica/patient/appoinment/presentation/view/appoinments_pg.dart';
+import 'package:clinica/_clinica/patient/appoinment/presentation/view/history_pg.dart';
 import 'package:clinica/_clinica/patient/appoinment/presentation/view/select_appoinment.dart';
 import 'package:clinica/_clinica/patient/patient_profile/presentation/view/profile_pg.dart';
 import 'package:clinica/_clinica/login/presentation/view/register_page.dart';
@@ -34,6 +35,10 @@ class RouteGenerator {
 
       case '/select_appoinment':
         return _fadeRoute(const SelectAppoinmentPage(), '/select_appoinment');
+
+      case '/history_appoinment':
+        return _fadeRoute(
+            const HistoryAppointmentPage(), '/history_appoinment');
 
       case '/petitions':
         return _fadeRoute(const PetitionPage(), '/petitions');

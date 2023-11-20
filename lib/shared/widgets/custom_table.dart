@@ -30,7 +30,7 @@ class TableCustomWg extends StatelessWidget {
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15), topRight: Radius.circular(15)),
         child: DataTable(
-            dataRowMaxHeight: Responsive.of(context).height * 0.05,
+            // dataRowMaxHeight: Responsive.of(context).height * 0.05,
             headingRowHeight: Responsive.of(context).height * 0.05,
             columnSpacing: 5,
             headingRowColor: MaterialStateColor.resolveWith(
