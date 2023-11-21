@@ -3,6 +3,7 @@ import 'package:either_dart/either.dart';
 
 abstract class IPetition {
   Future<Either<NetworkException, dynamic>> getPetitions({required int id});
-
+  Future<Either<NetworkException, dynamic>> getFinishedAppointments(
+      {required int id});
   Future<dynamic> createPetition();
 }

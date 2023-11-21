@@ -29,4 +29,21 @@ class PetitionReposisotry implements IPetition {
 
     return response;
   }
+
+  @override
+  Future<Either<NetworkException, dynamic>> getFinishedAppointments(
+      {required int id}) async {
+    var apiService = NetworkApiService();
+
+    var headers = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer ${prefs.token}",
+    };
+
+    String url = '${Apis.getFinishedAppointments}/$id';
+
+    dynamic response = await apiService.getResponse(url, headers: headers);
+
+    return response;
+  }
 }

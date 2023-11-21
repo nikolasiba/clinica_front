@@ -15,4 +15,9 @@ class PetitionService {
   Future<dynamic> createPetition() async {
     return await iPetition.createPetition();
   }
+
+  Future<Either<NetworkException, dynamic>> getFinishedAppointments(
+      {required int id}) async {
+    return await iPetition.getFinishedAppointments(id: id);
+  }
 }
