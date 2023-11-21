@@ -45,9 +45,9 @@ class CustomDialog extends StatelessWidget {
         child: AlertDialog(
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
-            Radius.circular(10),
+            Radius.circular(20),
           )),
-          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
           contentPadding: EdgeInsets.all(padding),
           title: Center(child: title),
           content: SingleChildScrollView(

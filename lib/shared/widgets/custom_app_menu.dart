@@ -27,36 +27,47 @@ class _PatientpMenu extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       width: double.infinity,
-      child: Row(
-        children: [
-          TextButton(
-            onPressed: () =>
-                locator<NavigationService>().navigateTo('/profile'),
-            child: const Text(
-              'Mi Perfil',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            TextButton(
+              onPressed: () =>
+                  locator<NavigationService>().navigateTo('/profile'),
+              child: const Text(
+                'Mi Perfil',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
             ),
-          ),
-          const SizedBox(width: 10),
-          TextButton(
-            onPressed: () =>
-                locator<NavigationService>().navigateTo('/appoinments'),
-            child: const Text(
-              'Mis citas',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+            const SizedBox(width: 10),
+            TextButton(
+              onPressed: () =>
+                  locator<NavigationService>().navigateTo('/appoinments'),
+              child: const Text(
+                'Mis citas',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
             ),
-          ),
-          const SizedBox(width: 10),
-          TextButton(
-            onPressed: () =>
-                locator<NavigationService>().navigateTo('/petitions'),
-            child: const Text(
-              'Mis Peticiones',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+            const SizedBox(width: 10),
+            TextButton(
+              onPressed: () =>
+                  locator<NavigationService>().navigateTo('/petitions'),
+              child: const Text(
+                'Mis Peticiones',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
             ),
-          ),
-          const SizedBox(width: 10),
-        ],
+            // const SizedBox(width: 10),
+            // TextButton(
+            //   onPressed: () =>
+            //       locator<NavigationService>().navigateTo('/appointment_detail'),
+            //   child: const Text(
+            //     'Detalle cita',
+            //     style: TextStyle(color: Colors.white, fontSize: 18),
+            //   ),
+            // ),
+          ],
+        ),
       ),
     );
   }
@@ -71,53 +82,75 @@ class _DoctrMenu extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       width: double.infinity,
-      child: Row(
-        children: [
-          TextButton(
-            onPressed: () =>
-                locator<NavigationService>().navigateTo('/profile'),
-            child: const Text(
-              'Mi Perfil',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            TextButton(
+              onPressed: () =>
+                  locator<NavigationService>().navigateTo('/manage_agenda'),
+              child: const Text(
+                'Gestionar Agenda',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
             ),
-          ),
-          const SizedBox(width: 10),
-          TextButton(
-            onPressed: () =>
-                locator<NavigationService>().navigateTo('/profile'),
-            child: const Text(
-              'Mis citas',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+            // const SizedBox(width: 10),
+            // TextButton(
+            //   onPressed: () =>
+            //       locator<NavigationService>().navigateTo('/start_day'),
+            //   child: const Text(
+            //     'Iniciar Jornada',
+            //     style: TextStyle(color: Colors.white, fontSize: 18),
+            //   ),
+            // ),
+            // const SizedBox(width: 10),
+            // TextButton(
+            //   onPressed: () =>
+            //       locator<NavigationService>().navigateTo('/appointment_detail'),
+            //   child: const Text(
+            //     'Detalle Cita (x)',
+            //     style: TextStyle(color: Colors.white, fontSize: 18),
+            //   ),
+            // ),
+            const SizedBox(width: 10),
+            TextButton(
+              onPressed: () =>
+                  locator<NavigationService>().navigateTo('/request_vacations'),
+              child: const Text(
+                'Solicitar dia libre',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
             ),
-          ),
-          const SizedBox(width: 10),
-          TextButton(
-            onPressed: () =>
-                locator<NavigationService>().navigateTo('/profile'),
-            child: const Text(
-              'Mis Peticiones',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+            //No mostrar
+            // const SizedBox(width: 10),
+            // TextButton(
+            //   onPressed: () =>
+            //       locator<NavigationService>().navigateTo('/details_agenda'),
+            //   child: const Text(
+            //     'Detalle Agenda (x)',
+            //     style: TextStyle(color: Colors.white, fontSize: 18),
+            //   ),
+            // ),
+            const SizedBox(width: 10),
+            TextButton(
+              onPressed: () =>
+                  locator<NavigationService>().navigateTo('/attention_history'),
+              child: const Text(
+                'Historial de atención',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
             ),
-          ),
-          const SizedBox(width: 10),
-          TextButton(
-            onPressed: () =>
-                locator<NavigationService>().navigateTo('/manage_agenda'),
-            child: const Text(
-              'Gestionar Agenda',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-          ),
-          const SizedBox(width: 10),
-          TextButton(
-            onPressed: () =>
-                locator<NavigationService>().navigateTo('/start_day'),
-            child: const Text(
-              'Iniciar Jornada',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-          ),
-        ],
+            // const SizedBox(width: 10),
+            // TextButton(
+            //   onPressed: () => locator<NavigationService>()
+            //       .navigateTo('/appointment_history'),
+            //   child: const Text(
+            //     'Historico de citas (x)',
+            //     style: TextStyle(color: Colors.white, fontSize: 18),
+            //   ),
+            // ),
+          ],
+        ),
       ),
     );
   }

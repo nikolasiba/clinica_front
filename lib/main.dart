@@ -1,3 +1,4 @@
+import 'package:clinica/_clinica/doctor/manage_agenda/presentation/controllers/manage_agenda_ctr.dart';
 import 'package:clinica/_clinica/login/presentation/controller/login_ctr.dart';
 import 'package:clinica/_clinica/patient/appoinment/presentation/controller/appoinment_ctrl.dart';
 import 'package:clinica/_clinica/patient/patient_profile/presentation/controller/profile_ctr.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AppoinmentController()),
         ChangeNotifierProvider(create: (_) => LoginController()),
         ChangeNotifierProvider(create: (_) => PatientProfileController()),
+        ChangeNotifierProvider(create: (_) => ManageAgendaController()),
         ChangeNotifierProvider(create: (_) => PetitionController()),
       ],
       child: MaterialApp(
