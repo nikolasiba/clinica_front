@@ -139,7 +139,7 @@ class PatientProfileController extends ChangeNotifier {
           context: locator<NavigationService>().navigatorKey.currentContext!,
           message: 'Por favor inicia sesion de nuevo \n para ver los cambios',
           onRightPressed: () {
-            locator<NavigationService>().navigateTo('login');
+            locator<NavigationService>().navigateTo('/login');
           });
 
       notifyListeners();

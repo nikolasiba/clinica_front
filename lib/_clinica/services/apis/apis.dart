@@ -37,4 +37,7 @@ class Apis {
   static final uploadPicture = '$localHost/api/images/upload';
   //
   static final getPetitions = '$localHost/api/patient/get-petition-by-patient';
+  static final getFinishedAppointments =
+      '$localHost/api/patient/get-finished-appointment';
+  static final createPetition = '$localHost/api/patient/create-petition';
 }

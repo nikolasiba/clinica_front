@@ -6,6 +6,7 @@ import 'package:clinica/_clinica/patient/patient_profile/presentation/view/profi
 import 'package:clinica/_clinica/login/presentation/view/register_page.dart';
 import 'package:clinica/_clinica/doctor/manage_agenda/presentation/view/manage_agenda_pg.dart';
 import 'package:clinica/_clinica/patient/patient_profile/presentation/view/update_data_pg.dart';
+import 'package:clinica/_clinica/patient/petitions/presentation/view/create_petition_pg.dart';
 import 'package:clinica/_clinica/patient/petitions/presentation/view/petitiont_pg.dart';
 import 'package:clinica/shared/util/preferences.dart';
 import 'package:flutter/cupertino.dart';
@@ -45,6 +46,9 @@ class RouteGenerator {
 
       case '/petitions':
         return _fadeRoute(const PetitionPage(), '/petitions');
+
+      case '/create_petition':
+        return _fadeRoute(const CreatePetitionPage(), '/create_petition');
 
       case '/register':
         return _fadeRoute(const RegisterPage(), '/register');
