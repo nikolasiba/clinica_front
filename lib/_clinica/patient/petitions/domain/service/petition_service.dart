@@ -12,7 +12,12 @@ class PetitionService {
     return await iPetition.getPetitions(id: id);
   }
 
-  Future<dynamic> createPetition() async {
-    return await iPetition.createPetition();
+  Future<dynamic> createPetition({required Object object}) async {
+    return await iPetition.createPetition(data: object);
+  }
+
+  Future<Either<NetworkException, dynamic>> getFinishedAppointments(
+      {required int id}) async {
+    return await iPetition.getFinishedAppointments(id: id);
   }
 }

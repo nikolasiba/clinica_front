@@ -74,6 +74,14 @@ class LoginController extends ChangeNotifier {
               Navigator.pop(context);
             });
       }
+    } else {
+      Utils.device.showDialogCustom(
+          context: context,
+          message: response.left.message,
+          title: 'Error',
+          onRightPressed: () {
+            Navigator.pop(context);
+          });
     }
   }
 

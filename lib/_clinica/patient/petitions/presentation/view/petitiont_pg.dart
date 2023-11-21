@@ -73,7 +73,9 @@ class _PetitionPageState extends State<PetitionPage> {
         ),
         const Spacer(),
         CustomButton(
-          onPressed: () {},
+          onPressed: () async {
+            await controller.getFinishedAppointments();
+          },
           text: 'Crear Peticion',
           backgroundColor: ConstColors.primaryColor,
           width: resposive.wp(25),
