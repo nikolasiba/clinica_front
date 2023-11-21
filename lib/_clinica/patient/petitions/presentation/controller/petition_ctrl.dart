@@ -15,6 +15,7 @@ class PetitionController extends ChangeNotifier {
 
   List<PetitionModel> petitions = [];
   List<HistoryModel> finishedAppointments = [];
+  TextEditingController descriptionController = TextEditingController();
 
   Future getPetitions() async {
     UserModel user = Utils.data.getUser();
@@ -28,7 +29,7 @@ class PetitionController extends ChangeNotifier {
       notifyListeners();
     } else if (response.isLeft) {
       Utils.device.showDialogCustom(
-          context: locator<GlobalKey<NavigatorState>>().currentContext!,
+          context: locator<NavigationService>().navigatorKey.currentContext!,
           message: response.left.message);
     }
   }
@@ -48,12 +49,34 @@ class PetitionController extends ChangeNotifier {
         locator<NavigationService>().navigateTo('/create_petition');
       } else {
         Utils.device.showDialogCustom(
-            context: locator<GlobalKey<NavigatorState>>().currentContext!,
+            context: locator<NavigationService>().navigatorKey.currentContext!,
             message: 'No hay citas finalizadas para radicar peticiones');
       }
     } else {
       Utils.device.showDialogCustom(
-          context: locator<GlobalKey<NavigatorState>>().currentContext!,
+          context: locator<NavigationService>().navigatorKey.currentContext!,
+          message: response.left.message);
+    }
+  }
+
+  Future<void> createPetition(int appoinment) async {
+    UserModel user = Utils.data.getUser();
+    Object object = {
+      "codeAppointment": appoinment,
+      "reason": descriptionController.text,
+      "typePetition": "REQUEST",
+      "patientCode": user.id,
+      "message": descriptionController.text
+    };
+
+    Either response = await petitionService.createPetition(object: object);
+    if (response.isRight) {
+      Utils.device.showDialogCustom(
+          context: locator<NavigationService>().navigatorKey.currentContext!,
+          message: 'Peticion creada con exito');
+    } else {
+      Utils.device.showDialogCustom(
+          context: locator<NavigationService>().navigatorKey.currentContext!,
           message: response.left.message);
     }
   }

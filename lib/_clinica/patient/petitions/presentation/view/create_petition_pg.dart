@@ -1,9 +1,9 @@
-import 'package:clinica/_clinica/patient/appoinment/presentation/controller/appoinment_ctrl.dart';
 import 'package:clinica/_clinica/patient/petitions/presentation/controller/petition_ctrl.dart';
 import 'package:clinica/shared/colors/colors.dart';
 import 'package:clinica/shared/util/responsive.dart';
 import 'package:clinica/shared/widgets/custom_button.dart';
 import 'package:clinica/shared/widgets/custom_page.dart';
+import 'package:clinica/shared/widgets/custom_text_field.dart';
 import 'package:clinica/shared/widgets/separator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -81,7 +81,8 @@ class _CreatePetitionPageState extends State<CreatePetitionPage> {
                                     showDialog(
                                         context: context,
                                         builder: (context) {
-                                          return _alertContent();
+                                          return _alertContent(
+                                              element.appointmentId);
                                         });
                                   },
                                   icon: const Icon(Icons.add_circle_outline)))),
@@ -111,8 +112,9 @@ class _CreatePetitionPageState extends State<CreatePetitionPage> {
     );
   }
 
-  Widget _alertContent() {
-    final controller = Provider.of<AppoinmentController>(context);
+  Widget _alertContent(appointment) {
+    final resposive = Responsive(context);
+    final controller = Provider.of<PetitionController>(context);
 
     return AlertDialog(
         title: Text(
@@ -131,83 +133,47 @@ class _CreatePetitionPageState extends State<CreatePetitionPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Detalles de la cita',
+              Center(
+                  child: Text(
+                'Escriba el motivo de su peticion',
                 style: TextStyle(
                     color: ConstColors.primaryColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 20),
+              )),
+              const Separator(size: 4),
+              CustomTextField(
+                height: resposive.hp(15),
+                textColor: Colors.grey,
+                borderColor: Colors.grey,
+                maxLines: 5,
+                textEditingController: controller.descriptionController,
+                hintText: 'Motivo de la peticion',
               ),
-              const Separator(size: 3),
-              RichText(
-                  text: TextSpan(
-                      text: 'Diagnostico: ',
-                      style: TextStyle(
-                          color: ConstColors.primaryColor,
-                          fontWeight: FontWeight.bold),
-                      children: [
-                    TextSpan(
-                      text: controller.attentionDetailModel.diagnosis,
-                      style: TextStyle(
-                          color: ConstColors.secundayColor,
-                          fontWeight: FontWeight.normal),
-                    )
-                  ])),
-              const Separator(size: 3),
-              RichText(
-                  text: TextSpan(
-                      text: 'Notas medicas: ',
-                      style: TextStyle(
-                          color: ConstColors.primaryColor,
-                          fontWeight: FontWeight.bold),
-                      children: [
-                    TextSpan(
-                      text: controller.attentionDetailModel.medicalNotes,
-                      style: TextStyle(
-                          color: ConstColors.secundayColor,
-                          fontWeight: FontWeight.normal),
-                    )
-                  ])),
-              const Separator(size: 3),
-              RichText(
-                  text: TextSpan(
-                      text: 'Diagnostico: ',
-                      style: TextStyle(
-                          color: ConstColors.primaryColor,
-                          fontWeight: FontWeight.bold),
-                      children: [
-                    TextSpan(
-                      text: controller.attentionDetailModel.diagnosis,
-                      style: TextStyle(
-                          color: ConstColors.secundayColor,
-                          fontWeight: FontWeight.normal),
-                    )
-                  ])),
-              const Separator(size: 3),
-              RichText(
-                  text: TextSpan(
-                      text: 'Tratamiento: ',
-                      style: TextStyle(
-                          color: ConstColors.primaryColor,
-                          fontWeight: FontWeight.bold),
-                      children: [
-                    TextSpan(
-                      text: controller.attentionDetailModel.treatment,
-                      style: TextStyle(
-                          color: ConstColors.secundayColor,
-                          fontWeight: FontWeight.normal),
-                    )
-                  ])),
             ],
           ),
         ),
         actions: [
-          CustomButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            text: 'Regresar',
-            backgroundColor: ConstColors.primaryColor,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CustomButton(
+                onPressed: () async {
+                  await controller.createPetition(appointment);
+                },
+                text: 'Crear',
+                backgroundColor: ConstColors.primaryColor,
+                width: resposive.width * .2,
+              ),
+              CustomButton(
+                width: resposive.width * .2,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                text: 'Cancelar',
+                backgroundColor: Colors.red,
+              ),
+            ],
           ),
         ]);
   }

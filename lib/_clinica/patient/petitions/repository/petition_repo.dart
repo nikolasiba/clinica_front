@@ -9,8 +9,20 @@ class PetitionReposisotry implements IPetition {
   final prefs = Preferences();
 
   @override
-  Future createPetition() {
-    throw UnimplementedError();
+  Future createPetition({required Object data}) async {
+    var apiService = NetworkApiService();
+
+    var headers = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer ${prefs.token}",
+    };
+
+    String url = Apis.createPetition;
+
+    dynamic response =
+        await apiService.postResponse(url, data, headers: headers);
+
+    return response;
   }
 
   @override
