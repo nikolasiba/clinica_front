@@ -2,6 +2,7 @@ import 'package:clinica/_clinica/doctor/manage_agenda/presentation/controllers/m
 import 'package:clinica/_clinica/login/presentation/controller/login_ctr.dart';
 import 'package:clinica/_clinica/patient/appoinment/presentation/controller/appoinment_ctrl.dart';
 import 'package:clinica/_clinica/patient/patient_profile/presentation/controller/profile_ctr.dart';
+import 'package:clinica/_clinica/patient/petitions/presentation/controller/petition_ctrl.dart';
 import 'package:clinica/_clinica/router/route_generator.dart';
 import 'package:clinica/_clinica/services/navigation_service.dart';
 import 'package:clinica/locator.dart';
@@ -29,7 +30,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AppoinmentController()),
         ChangeNotifierProvider(create: (_) => LoginController()),
         ChangeNotifierProvider(create: (_) => PatientProfileController()),
+<<<<<<< HEAD
         ChangeNotifierProvider(create: (_) => ManageAgendaController())
+=======
+        ChangeNotifierProvider(create: (_) => PetitionController()),
+>>>>>>> 2566763a1d0150260fb9eadd74d2021ea89cbf6d
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

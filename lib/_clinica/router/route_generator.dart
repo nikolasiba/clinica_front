@@ -10,6 +10,7 @@ import 'package:clinica/_clinica/patient/appoinment/presentation/view/select_app
 import 'package:clinica/_clinica/patient/patient_profile/presentation/view/profile_pg.dart';
 import 'package:clinica/_clinica/login/presentation/view/register_page.dart';
 import 'package:clinica/_clinica/doctor/manage_agenda/presentation/view/manage_agenda_pg.dart';
+import 'package:clinica/_clinica/patient/patient_profile/presentation/view/update_data_pg.dart';
 import 'package:clinica/_clinica/patient/petitions/presentation/view/petitiont_pg.dart';
 import 'package:clinica/shared/util/preferences.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,6 +44,9 @@ class RouteGenerator {
       case '/history_appoinment':
         return _fadeRoute(
             const HistoryAppointmentPage(), '/history_appoinment');
+
+      case '/update_data':
+        return _fadeRoute(const UpdateDataPage(), '/update_data');
 
       case '/petitions':
         return _fadeRoute(const PetitionPage(), '/petitions');

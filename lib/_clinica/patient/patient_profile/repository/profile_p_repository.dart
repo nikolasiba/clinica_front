@@ -29,7 +29,20 @@ class ProfileRepository implements IPatientProfile {
   }
 
   @override
-  Future<void> updatePatientProfile() {
-    throw UnimplementedError();
+  Future<Either<NetworkException, dynamic>> updatePatientProfile(
+      {required Object object}) async {
+    var apiService = NetworkApiService();
+
+    var headers = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer ${prefs.token}",
+    };
+
+    String url = Apis.updatePatientProfile;
+
+    dynamic response =
+        await apiService.putResponse(url, object, headers: headers);
+
+    return response;
   }
 }

@@ -6,12 +6,17 @@ class CustomDropDownButtom extends StatefulWidget {
       {super.key,
       required this.list,
       required this.selectedValue,
+      this.borderColor,
+      this.textColor,
+      this.backgroundColor,
       required this.onChanged});
 
   final List list;
   final void Function(String?) onChanged;
-
+  final Color? borderColor;
+  final Color? textColor;
   final String selectedValue;
+  final Color? backgroundColor;
   @override
   State<CustomDropDownButtom> createState() => _CustomDropDownButtomState();
 }
@@ -27,11 +32,19 @@ class _CustomDropDownButtomState extends State<CustomDropDownButtom> {
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          border: Border.all(width: 2, color: Colors.grey),
+          border:
+              Border.all(width: 2, color: widget.borderColor ?? Colors.grey),
         ),
         child: Padding(
           padding: const EdgeInsets.only(left: 30, right: 30),
           child: DropdownButton(
+            dropdownColor: widget.backgroundColor ?? Colors.white,
+            underline: const SizedBox(),
+            style: TextStyle(
+              color: widget.textColor ?? Colors.black,
+            ),
+            focusColor: widget.backgroundColor ?? Colors.white,
+
             //decoration: const InputDecoration(border: InputBorder.none),
             value: widget.selectedValue,
             onChanged: widget.onChanged,

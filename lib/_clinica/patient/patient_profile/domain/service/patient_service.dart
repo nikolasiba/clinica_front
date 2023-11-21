@@ -12,8 +12,9 @@ class PatientProfileService {
     return await iPatientProfile.getPatientProfile(code: code);
   }
 
-  Future<void> updatePatientProfile() async {
-    return await iPatientProfile.updatePatientProfile();
+  Future<Either<NetworkException, dynamic>> updatePatientProfile(
+      {required Object object}) async {
+    return await iPatientProfile.updatePatientProfile(object: object);
   }
 
   Future<void> deletePatientProfile() async {

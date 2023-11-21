@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:clinica/_clinica/login/domain/interface/i_login.dart';
 import 'package:clinica/_clinica/login/domain/model/register.dart';
 import 'package:clinica/_clinica/services/apis/apis.dart';
@@ -57,6 +59,20 @@ class LoginRepository implements ILogin {
 
     dynamic response =
         await apiService.putResponse(url, body, headers: headers);
+    return response;
+  }
+
+  @override
+  Future<Either<NetworkException, dynamic>> uploadPictur(
+      {required File file}) async {
+    var apiService = NetworkApiService();
+
+    var headers = {'Content-Type': 'multipart/form-data'};
+
+    String url = Apis.uploadPicture;
+
+    dynamic response =
+        await apiService.uploadPhoto(url, file, headers: headers);
     return response;
   }
 }

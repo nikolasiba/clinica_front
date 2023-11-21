@@ -1,16 +1,15 @@
 import 'package:clinica/_clinica/patient/petitions/domain/interface/i_petition.dart';
+import 'package:clinica/_clinica/services/data/remote/error/network_error.dart';
+import 'package:either_dart/either.dart';
 
 class PetitionService {
   final IPetition iPetition;
 
-  PetitionService({required this.iPetition});
+  PetitionService(this.iPetition);
 
-  Future<dynamic> getPetition() async {
-    return await iPetition.getPetitions();
-  }
-
-  Future<dynamic> getPetitionId(int id) async {
-    return await iPetition.getPetition(id);
+  Future<Either<NetworkException, dynamic>> getPetition(
+      {required int id}) async {
+    return await iPetition.getPetitions(id: id);
   }
 
   Future<dynamic> createPetition() async {
