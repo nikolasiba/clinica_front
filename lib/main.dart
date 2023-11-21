@@ -30,11 +30,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AppoinmentController()),
         ChangeNotifierProvider(create: (_) => LoginController()),
         ChangeNotifierProvider(create: (_) => PatientProfileController()),
-<<<<<<< HEAD
-        ChangeNotifierProvider(create: (_) => ManageAgendaController())
-=======
+        ChangeNotifierProvider(create: (_) => ManageAgendaController()),
         ChangeNotifierProvider(create: (_) => PetitionController()),
->>>>>>> 2566763a1d0150260fb9eadd74d2021ea89cbf6d
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

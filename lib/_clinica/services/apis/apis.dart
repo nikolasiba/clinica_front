@@ -32,7 +32,6 @@ class Apis {
   static final getHistory = '$localHost/api/patient/get-patient-history';
   static final attentionDetail =
       '$localHost/api/patient/get-choosed-appointment';
-<<<<<<< HEAD
 
   //doctor
   static final getAppointmentToday =
@@ -41,11 +40,9 @@ class Apis {
   static final getListFinishedAndCancelledAppointments =
       '$localHost/api/doctor/get-cancelled-finished-appointments';
   static final requestVacations = '$localHost/api/doctor/assign-day-off';
-=======
   //
 
   static final uploadPicture = '$localHost/api/images/upload';
   //
   static final getPetitions = '$localHost/api/patient/get-petition-by-patient';
->>>>>>> 2566763a1d0150260fb9eadd74d2021ea89cbf6d
 }

@@ -14,7 +14,7 @@ class ManageAppointmentRepository implements IManageAppointment {
 
     var headers = {'Authorization': 'Bearer ${prefs.token}'};
 
-    String url = '${Apis.getAppointmentToday}/$doctorCode';
+    String url = '${Apis.getAppointmentByDoctor}/$doctorCode';
 
     dynamic response = await apiService.getResponse(url, headers: headers);
     return response;

@@ -78,7 +78,7 @@ class _AppointmentDetailBody extends StatelessWidget {
               ),
             ),
             Text(
-              'a',
+              'Humbero gomez',
               style: TextStyle(
                 color: Colors.black54,
                 fontSize: 18,
@@ -99,7 +99,7 @@ class _AppointmentDetailBody extends StatelessWidget {
               ),
             ),
             Text(
-              'a',
+              'B+',
               style: TextStyle(
                 color: Colors.black54,
                 fontSize: 18,
@@ -120,7 +120,7 @@ class _AppointmentDetailBody extends StatelessWidget {
               ),
             ),
             Text(
-              'a',
+              'Gatos',
               style: TextStyle(
                 color: Colors.black54,
                 fontSize: 18,
@@ -141,7 +141,7 @@ class _AppointmentDetailBody extends StatelessWidget {
               ),
             ),
             Text(
-              'a',
+              '25',
               style: TextStyle(
                 color: Colors.black54,
                 fontSize: 18,
@@ -162,7 +162,7 @@ class _AppointmentDetailBody extends StatelessWidget {
               ),
             ),
             Text(
-              'a',
+              'Sanitas',
               style: TextStyle(
                 color: Colors.black54,
                 fontSize: 18,
@@ -193,7 +193,7 @@ class _AppointmentDetailBody extends StatelessWidget {
               left: Responsive.of(context).height * .15,
               right: Responsive.of(context).height * .15),
           child: CustomTextField(
-            textEditingController: TextEditingController()..text = 'a',
+            textEditingController: TextEditingController()..text = '',
             height: Responsive.of(context).height * .2,
             borderColor: Colors.black,
             maxLines: 4,
