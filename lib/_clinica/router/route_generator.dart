@@ -1,4 +1,8 @@
 import 'package:clinica/_clinica/doctor/appointment_detail/presentation/view/appointment_detail_pg.dart';
+import 'package:clinica/_clinica/doctor/appointment_history/presentation/view/appointment_history_pg.dart';
+import 'package:clinica/_clinica/doctor/attention_histoy/presentation/view/attention_history_pg.dart';
+import 'package:clinica/_clinica/doctor/details_agenda/presentation/view/details_agenda_pg.dart';
+import 'package:clinica/_clinica/doctor/request_vacation/presentation/view/request_vacation_pg.dart';
 import 'package:clinica/_clinica/doctor/start_day/presentation/view/start_day_pg.dart';
 import 'package:clinica/_clinica/patient/appoinment/presentation/view/appoinments_pg.dart';
 import 'package:clinica/_clinica/patient/appoinment/presentation/view/history_pg.dart';
@@ -54,6 +58,19 @@ class RouteGenerator {
 
       case '/appointment_detail':
         return _fadeRoute(const AppointmentDetailPage(), '/appointment_detail');
+
+      case '/request_vacations':
+        return _fadeRoute(const RequestVacationsPage(), '/request_vacations');
+
+      case '/details_agenda':
+        return _fadeRoute(const DetailsAgendaPage(), '/details_agenda');
+
+      case '/attention_history':
+        return _fadeRoute(const AttentionHistoryPage(), '/attention_history');
+
+      case '/appointment_history':
+        return _fadeRoute(
+            const AppointmentHistoryPage(), '/appointment_history');
 
       default:
         return _fadeRoute(const Page404(), '/404');

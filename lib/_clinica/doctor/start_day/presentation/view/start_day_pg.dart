@@ -136,3 +136,17 @@ class _StartDayBody extends StatelessWidget {
     );
   }
 }
+
+class DatePickerService {
+  static Future<DateTime> selectDate(
+      BuildContext context, DateTime initialDate) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: initialDate ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    return picked!;
+  }
+}
